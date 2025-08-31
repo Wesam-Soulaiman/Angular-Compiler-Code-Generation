@@ -17,6 +17,15 @@ public class AttributeValue {
 
     @Override
     public String toString() {
-        return name;
+        return "AttributeValue{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
+
+
+//    @Override
+//    public String visitAttributeValue(AngularHTMLParser.AttributeValueContext ctx) {
+//        // ترجع قيمة السلسلة النصية التي تمثل القيمة
+//        return ctx.STRING().getText();  // مثال: "main-class"
+//    }

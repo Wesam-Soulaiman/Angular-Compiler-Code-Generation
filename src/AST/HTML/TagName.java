@@ -1,6 +1,21 @@
 package AST.HTML;
 
+// كلاس مجرد يمثل اسم التاغ (tag)
 public abstract class TagName {
-    public abstract String toString();
+    protected String name;
+
+    public TagName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
+
 

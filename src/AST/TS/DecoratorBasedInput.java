@@ -27,6 +27,6 @@ public class DecoratorBasedInput {
 
     @Override
     public String toString() {
-        return "@Input() " + variableName.toString() + "!" + typeSelector.toString() + ";";
+        return "@Input() " + variableName.toString() + "! : " + typeSelector.toString() + ";";
     }
 }

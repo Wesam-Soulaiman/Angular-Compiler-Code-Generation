@@ -20,3 +20,10 @@ public class Text {
         return idDefiner;
     }
 }
+//
+//@Override
+//public ASTNode visitText(YourGrammarParser.TextContext ctx) {
+//    if (ctx == null) return null;
+//    String idDefiner = ctx.IDDEFINER().getText();
+//    return new Text(idDefiner);
+//}

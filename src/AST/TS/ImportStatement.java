@@ -28,6 +28,6 @@ public class ImportStatement {
 
     @Override
     public String toString() {
-        return "import " + importContent.toString() + " from " + fromModule + ";";
+        return "import " + importContent.toString() + " from \"" + fromModule + "\";";
     }
 }

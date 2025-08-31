@@ -19,7 +19,6 @@ public class ArrayContent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            sb.append("\n\t");
             sb.append(elements.get(i).toString());
             if (i < elements.size() - 1) {
                 sb.append(", ");

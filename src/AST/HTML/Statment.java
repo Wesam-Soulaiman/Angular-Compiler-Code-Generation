@@ -20,10 +20,22 @@ public class Statment {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("      ");
         for (Text text : texts) {
             sb.append(text);
         }
         return sb.toString();
     }
 }
+
+
+//    @Override
+//    public ASTNode visitStatment(YourGrammarParser.StatmentContext ctx) {
+//        if (ctx == null) {
+//            return null;
+//        }
+//        List<Text> texts = ctx.text() == null ?
+//                new ArrayList<>() :
+//                ctx.test().stream()
+//                        .map(attr -> (Text) visitText(attr))
+//                        .collect(Collectors.toList());
+//        return new Statment(texts);}

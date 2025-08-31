@@ -1,7 +1,7 @@
 package AST.HTML;
 
 public class AngularInterpolation {
-    private AngularInterpolationContent content;
+    private AngularInterpolationContent content; // ممكن يكون null (اختياري)
 
     public AngularInterpolation(AngularInterpolationContent content) {
         this.content = content;
@@ -24,3 +24,19 @@ public class AngularInterpolation {
         }
     }
 }
+
+//    @Override
+//    public ASTNode visitAngularInterpolation(YourGrammarParser.AngularInterpolationContext ctx) {
+//        if (ctx == null) {
+//            return null;
+//        }
+//
+//
+//        AngularInterpolationContent content = null;
+//        if (ctx.angularInterpolationContent() != null) {
+//            content = (AngularInterpolationContent) visit(ctx.angularInterpolationContent());
+//        }
+//
+//
+//        return new AngularInterpolation( content);
+//    }

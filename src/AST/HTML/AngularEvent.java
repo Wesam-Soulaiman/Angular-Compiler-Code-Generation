@@ -20,3 +20,17 @@ public class AngularEvent {
         return "(" + event.toString() + ")";
     }
 }
+
+
+//    @Override
+//    public ASTNode visitAngularEvent(YourGrammarParser.AngularEventContext ctx) {
+//        if (ctx == null) {
+//            return null;
+//        }
+//
+//
+//        EventName event =(EventName) visit(ctx.eventName());
+//
+//
+//        return new AngularEvent( event);
+//    }

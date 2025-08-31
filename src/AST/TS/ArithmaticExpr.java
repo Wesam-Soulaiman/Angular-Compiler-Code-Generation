@@ -29,6 +29,6 @@ public class ArithmaticExpr {
     @Override
     public String toString() {
 
-        return operator.toString() + " " + rightExpr.toString() + ";";
+        return operator.toString() + " " + rightExpr.toString();
     }
 }

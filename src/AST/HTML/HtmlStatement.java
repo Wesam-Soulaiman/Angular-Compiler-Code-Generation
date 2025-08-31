@@ -2,7 +2,7 @@ package AST.HTML;
 
 // HtmlStatement
 public class HtmlStatement extends ElementContent {
-    private Statment statment;
+    private Statment statment; // ← أصلحت كتابة النوع
 
     public HtmlStatement(Statment statment) { // ← أصلحت اسم الكلاس
         this.statment = statment;

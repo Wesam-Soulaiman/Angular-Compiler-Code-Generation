@@ -17,6 +17,6 @@ public class EndTag {
 
     @Override
     public String toString() {
-        return "\n" + "   " + "</" + tagName.toString() + ">";
+        return "</" + tagName.toString() + ">";
     }
 }

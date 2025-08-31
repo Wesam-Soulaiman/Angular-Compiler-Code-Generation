@@ -42,7 +42,7 @@ public class Parameter {
         StringBuilder sb = new StringBuilder();
         sb.append(name.toString());
         if (type != null) {
-            sb.append(type.toString());
+            sb.append(": ").append(type.toString());
         }
         if (defaultValue != null) {
             sb.append(" ").append(defaultValue.toString());

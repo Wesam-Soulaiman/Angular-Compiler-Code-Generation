@@ -757,29 +757,24 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         return new ArithmaticExpr(binaryOperator, primaryExpr1);
     }
 
-    ///////1////تم
+    ///////1////new  nnnnnn
     @Override
     public ObjectProperty visitObjectProperty(AngularParser.ObjectPropertyContext ctx) {
-        if (ctx == null) {
-            return null;
-        }
+        if (ctx == null) return null;
 
         ObjectPropertyName objectPropertyName = (ObjectPropertyName) visit(ctx.objectPropertyName());
         Expression expression = (Expression) visit(ctx.expression());
 
-        String variableName = String.valueOf(objectPropertyName);
-        SymbolTable symbolTable = SymbolTable.getInstance();
+        String variableName = objectPropertyName.toString();
+        ObjectPropertySymbolTable propTable = new ObjectPropertySymbolTable("semantic_errors.txt");
 
-     //   if (!symbolTable.isVarExist(variableName)) {
-           // String error = "Semantic Error: الخاصية '" + variableName + "' غير معرفة مسبقًا. (السطر: " + ctx.start.getLine() + ")";
+        propTable.checkPropertyExists(variableName, ctx.getStart().getLine());
 
-           // writeErrorToFile(error);
-
-           // System.err.println(error);
-
+        propTable.put(variableName, expression);
 
         return new ObjectProperty(objectPropertyName, expression);
     }
+
 
 
     @Override
@@ -889,70 +884,42 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         }
         return DeclarationTypes.CONST;
     }
-
+////////new nnnnn
     @Override
     public Object visitDecoratorBasedInput(AngularParser.DecoratorBasedInputContext ctx) {
         VariableName name = (VariableName) visit(ctx.variableName());
         TypeSelector type = (TypeSelector) visit(ctx.typeSelector());
 
-        String variableName = name.toString();  // أو name.getName() إذا عندك getter
-        String variableType = type.toString();  // أو type.getName()
-
+        String variableName = name.toString();
+        String variableType = type.toString();
 
         SymbolTable symbolTable = SymbolTable.getInstance();
+        DecoratorBasedInputErrorLogger errorLogger = new DecoratorBasedInputErrorLogger("semantic_errors.txt");
 
+        Symbol existingSymbol = symbolTable.get(variableName);
 
-        if (symbolTable.isVarExistInCurrentScope(variableName)) {
-            String error = "Semantic Error: المتغير '" + variableName + "' تم تعريفه مسبقًا";
-            symbolTable.semanticError(error, ctx.start.getLine());
+        if (existingSymbol != null) {
+            if (existingSymbol.getType().equals(variableType)) {
+                errorLogger.logError(variableName, ctx.getStart().getLine());
+                symbolTable.semanticError("Variable '" + variableName + "' already defined with same type", ctx.getStart().getLine());
+            } else {
+                System.out.println("Warning: Variable '" + variableName + "' already exists with a different type ("
+                        + existingSymbol.getType() + "). Current type: " + variableType + " at line " + ctx.getStart().getLine());
+            }
         } else {
-
             Symbol symbol = new Symbol(variableType);
             symbolTable.put(variableName, symbol);
         }
+
         return new DecoratorBasedInput(name, type);
     }
 
+
+///new nnnnnn
     @Override
     public Object visitVariableDeclaration(AngularParser.VariableDeclarationContext ctx) {
-//        SymbolTable symbolTable = SymbolTable.getInstance();
-//
-//        DeclarationTypes declarationType = null;
-//        if (ctx.declarationTypes() != null) {
-//            declarationType = (DeclarationTypes) visit(ctx.declarationTypes());
-//        }
-//
-//        VariableName variableName = (VariableName) visit(ctx.variableName());
-//        String varName = variableName.toString();
-//
-//        TypeSelector typeSelector = null;
-//        String varType = "any";
-//        if (ctx.typeSelector() != null) {
-//            typeSelector = (TypeSelector) visit(ctx.typeSelector());
-//            if (typeSelector != null) {
-//                varType = typeSelector.toString();
-//            }
-//        }
-//
-//        VariableValue variableValue = null;
-//        if (ctx.variableValue() != null) {
-//            variableValue = (VariableValue) visit(ctx.variableValue());
-//        }
-//        if (declarationType != null || typeSelector != null) {
-//            if (symbolTable.isVarExistInCurrentScope(varName)) {
-//                symbolTable.semanticError(
-//                        "Semantic Error: المتغير '" + varName + "' معرف مسبقًا",
-//                        ctx.start.getLine()
-//                );
-//            } else {
-//                Symbol symbol = new Symbol(varType);
-//                symbolTable.put(varName, symbol);
-//            }
-//        }
-//
-//      return new VariableDeclaration(declarationType, variableName, typeSelector, variableValue);
-        /////////////////////////////////////////////////////////////////////////////////////////////
         SymbolTable symbolTable = SymbolTable.getInstance();
+        VariableDeclarationErrorLogger errorLogger = new VariableDeclarationErrorLogger("semantic_errors.txt");
 
         DeclarationTypes declarationType = null;
         if (ctx.declarationTypes() != null) {
@@ -978,52 +945,29 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
             varValue = variableValue;
         }
 
-        if (declarationType != null || typeSelector != null) {
-            if (symbolTable.isVarExist(varName)) {
-                Symbol existingSymbol = symbolTable.get(varName);
+        Symbol existingSymbol = symbolTable.get(varName);
 
-                if (existingSymbol.getDeclarationType() == DeclarationTypes.CONST) {
-                    // لا يمكن إعادة تعريف متغير const
-                    symbolTable.semanticError(
-                            "Semantic Error: المتغير '" + varName + "' معرف مسبقًا كـ const ولا يمكن إعادة تعريفه",
-                            ctx.start.getLine()
-                    );
+        if (existingSymbol != null) {
+            if (existingSymbol.getDeclarationType() == DeclarationTypes.CONST) {
+                errorLogger.logError("Variable '" + varName + "' is already defined as const", ctx.getStart().getLine());
 
-                    // تحقق إضافي: لا يمكن تغيير النوع عند إعادة التعريف
-                    if (!existingSymbol.getType().equals(varType)) {
-                        symbolTable.semanticError(
-                                "Semantic Error: لا يمكن تغيير نوع المتغير '" + varName + "' لأنه معرف كـ const",
-                                ctx.start.getLine()
-                        );
-                    }
-
-                    // تحقق إضافي: لا يمكن تغيير القيمة عند إعادة التعريف
-                    if (existingSymbol.getValue() != null && !existingSymbol.getValue().equals(varValue)) {
-                        symbolTable.semanticError(
-                                "Semantic Error: لا يمكن إعادة إسناد قيمة جديدة للمتغير '" + varName + "' لأنه معرف كـ const",
-                                ctx.start.getLine()
-                        );
-                    }
-
-                } else if (symbolTable.isVarExistInCurrentScope(varName)) {
-                    // متغير معرف مسبقًا في نفس النطاق - خطأ
-                    symbolTable.semanticError(
-                            "Semantic Error: المتغير '" + varName + "' معرف مسبقًا في نفس النطاق",
-                            ctx.start.getLine()
-                    );
+                if (!existingSymbol.getType().equals(varType)) {
+                    errorLogger.logError("Cannot change type of const variable '" + varName + "'", ctx.getStart().getLine());
                 }
-                // إذا كان موجودًا ومش const، لا تسمح بإعادة تعريف في نفس النطاق (خطأ)
-                // وإلا يمكن السماح بتعريفه في نطاق خارجي (ليس هنا)
-            } else {
-                // إنشاء المتغير الجديد في الجدول
-                Symbol symbol = new Symbol(varType, varValue, declarationType);
-                symbolTable.put(varName, symbol);
+
+                if (existingSymbol.getValue() != null && !existingSymbol.getValue().equals(varValue)) {
+                    errorLogger.logError("Cannot assign a new value to const variable '" + varName + "'", ctx.getStart().getLine());
+                }
+            } else if (symbolTable.isVarExistInCurrentScope(varName)) {
+                errorLogger.logError("Variable '" + varName + "' is already defined in the current scope", ctx.getStart().getLine());
             }
+        } else {
+            Symbol symbol = new Symbol(varType, varValue, declarationType);
+            symbolTable.put(varName, symbol);
         }
 
         return new VariableDeclaration(declarationType, variableName, typeSelector, variableValue);
     }
-
 
 
 
@@ -1134,7 +1078,7 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
             String type = typeSelector.toString();
 
             if (symbolTable.isVarExistInCurrentScope(name)) {
-                String error = "Semantic Error: المعامل '" + name + "' معرف مسبقًا في هذا النطاق.";
+                String error = "Semantic Error: The parameter '" + name + "' is already defined in this scope.";
                 symbolTable.semanticError(error, ctx.start.getLine());
             } else {
                 Symbol symbol = new Symbol( type);
@@ -1200,7 +1144,7 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         String name = functionName.toString();
         SymbolTable symbolTable = SymbolTable.getInstance();
         if (symbolTable.isVarExistInCurrentScope(name)) {
-            String error = "Semantic Error: الدالة '" + name + "' معرفة مسبقًا في هذا النطاق.";
+            String error = "Semantic Error: The function '" + name + "' is already defined in this scope.";
             symbolTable.semanticError(error, ctx.start.getLine());
         } else {
             Symbol symbol = new Symbol("function");
@@ -1266,7 +1210,7 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         SymbolTable symbolTable = SymbolTable.getInstance();
 
         if (symbolTable.isVarExistInCurrentScope(name)) {
-            String errorMsg = "Semantic Error: الخاصية '" + name + "' معرفة مسبقًا في نفس الواجهة. (السطر: " + ctx.start.getLine() + ")";
+            String errorMsg = "Semantic Error: The property '" + name + "' is already defined in the same interface. (Line: " + ctx.start.getLine() + ")";
 
             writeErrorToFile(errorMsg);
 
@@ -1289,12 +1233,11 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         String name = interfaceName.toString();
 
         if (symbolTable.isVarExistInCurrentScope(name)) {
-            String error = "Semantic Error: الواجهة '" + name + "' معرفة مسبقًا في هذا النطاق. (السطر: " + ctx.start.getLine() + ")";
+            String error = "Semantic Error: The interface '" + name + "' is already defined in this scope. (Line: " + ctx.start.getLine() + ")";
 
-            // 📝 كتابة الخطأ داخل ملف
+
             writeErrorToFile(error);
 
-            // طباعة اختيارية في الـ console
             System.err.println(error);
 
         } else {
@@ -1332,12 +1275,12 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
     System.out.println("Visiting method: " + methodName + " at line " + ctx.start.getLine());
 
     if (symbolTable.isVarExistInCurrentScope(methodName)) {
-        String error = "خطأ دلالي: الدالة '" + methodName + "' معرفة مسبقًا في هذا النطاق. (السطر: " + ctx.start.getLine() + ")";
+        String error = "Semantic Error: The function '" + methodName + "' is already defined in this scope. (Line: " + ctx.start.getLine() + ")";
 
-        // 📝 كتابة الخطأ في ملف
+
         writeErrorToFile(error);
 
-        // طباعة اختيارية
+
         System.err.println(error);
     } else {
         Symbol methodSymbol = new Symbol("method");
@@ -1384,7 +1327,8 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         symbolTable.exitScope();
         return new ClassBody(members);
     }
-//تم
+//// new nnnn
+
     @Override
     public Object visitClassDeclaration(AngularParser.ClassDeclarationContext ctx) {
         ClassName Name = (ClassName) visit(ctx.className());
@@ -1393,7 +1337,7 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         SymbolTable symbolTable = SymbolTable.getInstance();
 
         if (symbolTable.isVarExistInCurrentScope(name)) {
-            String error = "Semantic Error: الكلاس '" + name + "' معرف مسبقًا في هذا النطاق. (السطر: " + ctx.start.getLine() + ")";
+            String error = "Semantic Error: The class '" + name + "' is already defined in this scope. (Line: " + ctx.start.getLine() + ")";
 
             writeErrorToFile(error);
 
@@ -1537,7 +1481,8 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
             String name = namedImport.toString();
 
             if (seenNames.contains(name)) {
-                String error = "Semantic Error: المعامل '" + name + "' مكرر في الاستيراد. (السطر: " + importCtx.start.getLine() + ")";
+                String error = "Semantic Error: The parameter '" + name + "' is duplicated in the import. (Line: " + importCtx.start.getLine() + ")";
+
                 writeErrorToFile(error);
                 System.err.println(error);
             } else {
@@ -1797,10 +1742,24 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         } else if (ctx.angularDirective() != null) {
             AngularDirective angularDirective = (AngularDirective) visit(ctx.angularDirective());
             return new AttributeName(angularDirective);
-        } else {
+        }
+        else if (ctx.twoWayDataBinding() != null) {       // الجديد
+            TwoWayDataBinding twoWay = (TwoWayDataBinding) visit(ctx.twoWayDataBinding());
+            return new AttributeName(twoWay);
+        }
+        else {
             return null;
         }
     }
+    @Override
+    public Object visitTwoWayDataBinding(AngularParser.TwoWayDataBindingContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        String model = ctx.IDDEFINER.getText();
+        return new TwoWayDataBinding(model);
+    }
+
 
     @Override
     public Object visitHtmlAttribute(AngularParser.HtmlAttributeContext ctx) {
@@ -1981,17 +1940,31 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
 
     @Override
     public Object visitStartTag(AngularParser.StartTagContext ctx) {
-        TagName tagName=(TagName) visit(ctx.tagName());
+        TagName tagName = (TagName) visit(ctx.tagName());
         List<HtmlAttribute> attributes = new ArrayList<>();
         for (AngularParser.AttributeContext attrCtx : ctx.attribute()) {
             attributes.add((HtmlAttribute) visit(attrCtx));
         }
+
+        // Push the start tag onto the stack
+        TagSymbolTable tagTable = TagSymbolTable.getInstance(); // افترضنا Singleton
+        tagTable.pushTag(tagName.getName());
+
         return new StartTag(tagName, attributes);
     }
 
     @Override
     public Object visitEndTag(AngularParser.EndTagContext ctx) {
-        TagName tagName=(TagName) visit(ctx.tagName());
+        if (ctx == null || ctx.tagName() == null) {
+            System.err.println("EndTag context is null!");
+            return null;
+        }
+        TagName tagName = (TagName) visit(ctx.tagName());
+        int line = ctx.start.getLine();
+        TagSymbolTable tagTable = TagSymbolTable.getInstance();
+
+        tagTable.popTag(tagName.getName(), line);
+
         return new EndTag(tagName);
     }
 
@@ -2055,7 +2028,34 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
             System.err.println("فشل في كتابة الخطأ داخل الملف: " + e.getMessage());
         }
     }
+    @Override
+    public Object visitNavTag(AngularParser.NavTagContext ctx) {
+        return new NavTag();
+    }
 
+    @Override
+    public StandardAttribute visitLinkAttr(AngularParser.LinkAttrContext ctx) {
+        return new LinkAttr();
+    }
+
+    @Override
+    public Object visitLinkActiveAttr(AngularParser.LinkActiveAttrContext ctx) {
+        return new LinkActiveAttr();
+    }
+
+    @Override
+    public Object visitInputRoutes(AngularParser.InputRoutesContext ctx) {
+        return new InputRoutes();
+    }
+
+    @Override
+    public Object visitRoutesType(AngularParser.RoutesTypeContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+
+        return new RoutesType();
+    }
 }
 
 

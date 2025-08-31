@@ -1,14 +1,14 @@
 package AST.HTML;
 
+// Custom tag like <my-component>
 public class CustomTag extends TagName {
-    private String name;
 
     public CustomTag(String name) {
-        this.name = name;
+        super(name); // تمرير الاسم للـ constructor في TagName
     }
 
     @Override
     public String toString() {
-        return name;
+        return super.toString(); // سيعيد الاسم المخزن في TagName
     }
 }

@@ -19,7 +19,7 @@ public class DecoratorObject {
 
     @Override
     public String toString() {
-       return  "{" + "\n" + content.toString() +"}";
+       return "{" + content.toString() +"}";
     }
 }
 

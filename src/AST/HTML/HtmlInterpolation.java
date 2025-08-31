@@ -10,6 +10,6 @@ public class HtmlInterpolation extends ElementContent {
 
     @Override
     public String toString() {
-        return "      " + angularInterpolation.toString();
+        return angularInterpolation.toString();
     }
 }

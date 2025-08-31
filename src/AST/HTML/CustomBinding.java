@@ -1,7 +1,7 @@
 package AST.HTML;
 
 public class CustomBinding extends BindingName {
-    private final String name;
+    private String name;
 
     public CustomBinding(String name) {
         this.name = name;
@@ -9,6 +9,6 @@ public class CustomBinding extends BindingName {
 
     @Override
     public String toString() {
-        return name;
+        return "#" + name;
     }
 }

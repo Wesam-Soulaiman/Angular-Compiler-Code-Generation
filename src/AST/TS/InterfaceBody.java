@@ -21,10 +21,11 @@ public class InterfaceBody {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n");
+        sb.append("{\n");
         for (InterfaceProperty prop : properties) {
             sb.append("  ").append(prop.toString()).append("\n");
         }
+        sb.append("}");
         return sb.toString();
     }
 }

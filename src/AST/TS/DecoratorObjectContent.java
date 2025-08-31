@@ -22,12 +22,10 @@ public class DecoratorObjectContent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < properties.size(); i++) {
-            sb.append("\t");
             sb.append(properties.get(i).toString());
             if (i < properties.size() - 1) {
                 sb.append(", ");
             }
-            sb.append("\n");
         }
         return sb.toString();
     }

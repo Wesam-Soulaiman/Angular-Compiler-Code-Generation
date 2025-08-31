@@ -5,6 +5,11 @@ public class AttributeName {
     public AngularBinding angularBinding;
     public AngularEvent angularEvent;
     public AngularDirective angularDirective;
+    public TwoWayDataBinding twoWayDataBinding ;
+
+    public AttributeName(TwoWayDataBinding twoWayDataBinding) {
+        this.twoWayDataBinding = twoWayDataBinding;
+    }
 
     public AttributeName(StandardAttribute standardAttribute) {
         this.standardAttribute = standardAttribute;
@@ -28,6 +33,14 @@ public class AttributeName {
 
     public void setStandardAttribute(StandardAttribute standardAttribute) {
         this.standardAttribute = standardAttribute;
+    }
+
+    public TwoWayDataBinding getTwoWayDataBinding() {
+        return twoWayDataBinding;
+    }
+
+    public void setTwoWayDataBinding(TwoWayDataBinding twoWayDataBinding) {
+        this.twoWayDataBinding = twoWayDataBinding;
     }
 
     public AngularBinding getAngularBinding() {
@@ -63,7 +76,10 @@ public class AttributeName {
             return this.angularEvent.toString();
         } else if (this.angularDirective != null) {
             return this.angularDirective.toString();
-        } else {
+        } else if (this.twoWayDataBinding!= null) {
+            return this.twoWayDataBinding.toString();
+        }
+        else {
             return super.toString();
         }
     }

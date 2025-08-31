@@ -1,7 +1,7 @@
 package AST.HTML;
 
 public class CustomEvent extends EventName {
-    private final String name;
+    private String name;
 
     public CustomEvent(String name) {
         this.name = name;
@@ -9,6 +9,6 @@ public class CustomEvent extends EventName {
 
     @Override
     public String toString() {
-        return name;
+        return "#" + name;
     }
 }
