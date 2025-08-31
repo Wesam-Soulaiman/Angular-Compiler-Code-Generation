@@ -140,6 +140,13 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImgTag(AngularParser.ImgTagContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Inputtag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputtag(AngularParser.InputtagContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code UlTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
 	 * @param ctx the parse tree
@@ -405,12 +412,12 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClickEvent(AngularParser.ClickEventContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code SubmitEvent}
+	 * Visit a parse tree produced by the {@code NgSubmitEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubmitEvent(AngularParser.SubmitEventContext ctx);
+	T visitNgSubmitEvent(AngularParser.NgSubmitEventContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ChangeEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.
@@ -425,6 +432,13 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInputEvent(AngularParser.InputEventContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SubmitEvent}
+	 * labeled alternative in {@link AngularParser#eventName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubmitEvent(AngularParser.SubmitEventContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code KeyDownEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.

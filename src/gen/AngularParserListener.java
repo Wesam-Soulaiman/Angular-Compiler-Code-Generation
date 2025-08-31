@@ -228,6 +228,18 @@ public interface AngularParserListener extends ParseTreeListener {
 	 */
 	void exitImgTag(AngularParser.ImgTagContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Inputtag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void enterInputtag(AngularParser.InputtagContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Inputtag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void exitInputtag(AngularParser.InputtagContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code UlTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
 	 * @param ctx the parse tree
@@ -680,17 +692,17 @@ public interface AngularParserListener extends ParseTreeListener {
 	 */
 	void exitClickEvent(AngularParser.ClickEventContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code SubmitEvent}
+	 * Enter a parse tree produced by the {@code NgSubmitEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubmitEvent(AngularParser.SubmitEventContext ctx);
+	void enterNgSubmitEvent(AngularParser.NgSubmitEventContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code SubmitEvent}
+	 * Exit a parse tree produced by the {@code NgSubmitEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.
 	 * @param ctx the parse tree
 	 */
-	void exitSubmitEvent(AngularParser.SubmitEventContext ctx);
+	void exitNgSubmitEvent(AngularParser.NgSubmitEventContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ChangeEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.
@@ -715,6 +727,18 @@ public interface AngularParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInputEvent(AngularParser.InputEventContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SubmitEvent}
+	 * labeled alternative in {@link AngularParser#eventName}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubmitEvent(AngularParser.SubmitEventContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SubmitEvent}
+	 * labeled alternative in {@link AngularParser#eventName}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubmitEvent(AngularParser.SubmitEventContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code KeyDownEvent}
 	 * labeled alternative in {@link AngularParser#eventName}.

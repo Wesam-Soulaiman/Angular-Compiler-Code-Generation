@@ -18,7 +18,7 @@ import static org.antlr.v4.runtime.CharStreams.fromPath;
 
 public class Main {
 public static void main(String[] args) throws IOException {
-        String source = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\TS-3.txt";
+        String source = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\TS-1.txt";
         CharStream cs = fromFileName(source);
 
         AngularLexer lexer = new AngularLexer(cs);

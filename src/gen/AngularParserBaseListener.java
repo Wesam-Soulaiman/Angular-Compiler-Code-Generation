@@ -245,6 +245,18 @@ public class AngularParserBaseListener implements AngularParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInputtag(AngularParser.InputtagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInputtag(AngularParser.InputtagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterUlTag(AngularParser.UlTagContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -713,13 +725,13 @@ public class AngularParserBaseListener implements AngularParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubmitEvent(AngularParser.SubmitEventContext ctx) { }
+	@Override public void enterNgSubmitEvent(AngularParser.NgSubmitEventContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSubmitEvent(AngularParser.SubmitEventContext ctx) { }
+	@Override public void exitNgSubmitEvent(AngularParser.NgSubmitEventContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -744,6 +756,18 @@ public class AngularParserBaseListener implements AngularParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInputEvent(AngularParser.InputEventContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSubmitEvent(AngularParser.SubmitEventContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubmitEvent(AngularParser.SubmitEventContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

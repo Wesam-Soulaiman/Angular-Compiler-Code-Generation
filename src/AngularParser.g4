@@ -126,7 +126,7 @@ prog
 
     eventName
         : CLICK      #ClickEvent
-        | NG_SUBMIT      #SubmitEvent //////////// new
+        | NG_SUBMIT      #NgSubmitEvent //////////// new
         | CHANGE     #ChangeEvent
         | INPUT      #InputEvent
         | SUBMIT     #SubmitEvent
