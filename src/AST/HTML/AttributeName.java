@@ -7,24 +7,13 @@ public class AttributeName {
     public AngularDirective angularDirective;
     public TwoWayDataBinding twoWayDataBinding ;
 
-    public AttributeName(TwoWayDataBinding twoWayDataBinding) {
-        this.twoWayDataBinding = twoWayDataBinding;
-    }
 
-    public AttributeName(StandardAttribute standardAttribute) {
+    public AttributeName(StandardAttribute standardAttribute, AngularBinding angularBinding, AngularEvent angularEvent, AngularDirective angularDirective, TwoWayDataBinding twoWayDataBinding) {
         this.standardAttribute = standardAttribute;
-    }
-
-    public AttributeName(AngularBinding angularBinding) {
         this.angularBinding = angularBinding;
-    }
-
-    public AttributeName(AngularDirective angularDirective) {
-        this.angularDirective = angularDirective;
-    }
-
-    public AttributeName(AngularEvent angularEvent) {
         this.angularEvent = angularEvent;
+        this.angularDirective = angularDirective;
+        this.twoWayDataBinding = twoWayDataBinding;
     }
 
     public StandardAttribute getStandardAttribute() {
