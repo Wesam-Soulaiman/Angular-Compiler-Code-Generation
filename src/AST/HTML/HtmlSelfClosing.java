@@ -11,4 +11,10 @@ public class HtmlSelfClosing extends HtmlElement {
     public String toString() {
         return selfClosingTag.toString();
     }
+
+    @Override
+    public String generateHTML() {
+        return selfClosingTag.generateHTML();
+    }
+
 }

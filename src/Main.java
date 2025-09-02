@@ -38,6 +38,8 @@ public static void main(String[] args) throws IOException {
         TsProgram tsProg     = parseTsx(tsxSource);
 
         CodeGenerator generator = new CodeGenerator();
+
+
         generator.generate(htmlProg,routesProg, cssProg, tsProg);
 
         String source = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";

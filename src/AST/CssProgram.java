@@ -27,8 +27,8 @@ public class CssProgram extends Prog {
         return "";
     }
 
-//    @Override
-//    public String generateHTML() {
-//        return "";
-//    }
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

@@ -1,32 +1,33 @@
 package AST.HTML;
 
-import AST.HTML.HtmlElement;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class HtmlProg {
-    private List<HtmlElement> elements;
+    private List<HtmlNode> nodes;
 
-    public HtmlProg(List<HtmlElement> elements) {
-        this.elements = elements;
+    public HtmlProg(List<HtmlNode> nodes) {
+        this.nodes = nodes;
     }
 
-
-    public List<HtmlElement> getElements() {
-        return elements;
+    public List<HtmlNode> getNodes() {
+        return nodes;
     }
 
-    public void setElements(List<HtmlElement> elements) {
-        this.elements = elements;
+    public void setNodes(List<HtmlNode> nodes) {
+        this.nodes = nodes;
     }
 
     @Override
     public String toString() {
-        return elements.stream()
-                .map(HtmlElement::toString)
+        return nodes.stream()
+                .map(HtmlNode::toString)
                 .collect(Collectors.joining("\n"));
     }
 
-
+    public String generateHTML() {
+        return nodes.stream()
+                .map(HtmlNode::generateHTML) // call generateHTML on each HTML AST node
+                .collect(Collectors.joining("\n"));
+    }
 }

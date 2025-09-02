@@ -1,6 +1,5 @@
 package AST.HTML;
 
-// كلاس مجرد يمثل اسم التاغ (tag)
 public abstract class TagName {
     protected String name;
 
@@ -16,6 +15,8 @@ public abstract class TagName {
     public String toString() {
         return name;
     }
+
+    public String generateHtml() {
+        return name;
+    }
 }
-
-

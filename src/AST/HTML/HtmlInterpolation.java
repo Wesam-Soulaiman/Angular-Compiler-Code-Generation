@@ -12,4 +12,10 @@ public class HtmlInterpolation extends ElementContent {
     public String toString() {
         return angularInterpolation.toString();
     }
+
+    @Override
+    public String generateHTML() {
+        // For Angular interpolation, we just return the template {{ ... }}
+        return angularInterpolation.toString();
+    }
 }

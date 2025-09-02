@@ -9,7 +9,7 @@ import java.io.IOException;
 public class CodeGenerator {
 
     public void generate(HtmlProgram htmlProg, TsProgram routesProg, CssProgram cssProg, TsProgram tsProg) {
-        String htmlOut = htmlProg.toString();
+        String htmlOut = transpileHTML(htmlProg);
         String routesOut = transpileTs(routesProg);
         String cssOut  = cssProg.toString();
         String jsOut   = transpileTs(tsProg);
@@ -27,9 +27,9 @@ public class CodeGenerator {
         return tsProg.generateJS();
     }
 
-//    private String transpileHTML(HtmlProgram htmlProg) {
-//        return htmlProg.generateHTML();
-//    }
+    private String transpileHTML(HtmlProgram htmlProg) {
+        return htmlProg.generateHTML();
+    }
 
     private String injectScript(String html, String js) {
         return html.replace("</script>",  js + "\n</script>");

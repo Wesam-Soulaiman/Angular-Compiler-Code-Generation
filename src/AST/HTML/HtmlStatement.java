@@ -2,9 +2,9 @@ package AST.HTML;
 
 // HtmlStatement
 public class HtmlStatement extends ElementContent {
-    private Statment statment; // ← أصلحت كتابة النوع
+    private Statment statment; // ← fixed class name
 
-    public HtmlStatement(Statment statment) { // ← أصلحت اسم الكلاس
+    public HtmlStatement(Statment statment) { // ← fixed constructor
         this.statment = statment;
     }
 
@@ -18,6 +18,12 @@ public class HtmlStatement extends ElementContent {
 
     @Override
     public String toString() {
+        return statment.toString();
+    }
+
+    @Override
+    public String generateHTML() {
+        // For a statement, just output its text content
         return statment.toString();
     }
 }

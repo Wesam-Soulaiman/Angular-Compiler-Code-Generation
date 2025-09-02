@@ -5,7 +5,7 @@ public class AttributeName {
     public AngularBinding angularBinding;
     public AngularEvent angularEvent;
     public AngularDirective angularDirective;
-    public TwoWayDataBinding twoWayDataBinding ;
+    public TwoWayDataBinding twoWayDataBinding;
 
     public AttributeName(TwoWayDataBinding twoWayDataBinding) {
         this.twoWayDataBinding = twoWayDataBinding;
@@ -27,45 +27,6 @@ public class AttributeName {
         this.angularEvent = angularEvent;
     }
 
-    public StandardAttribute getStandardAttribute() {
-        return standardAttribute;
-    }
-
-    public void setStandardAttribute(StandardAttribute standardAttribute) {
-        this.standardAttribute = standardAttribute;
-    }
-
-    public TwoWayDataBinding getTwoWayDataBinding() {
-        return twoWayDataBinding;
-    }
-
-    public void setTwoWayDataBinding(TwoWayDataBinding twoWayDataBinding) {
-        this.twoWayDataBinding = twoWayDataBinding;
-    }
-
-    public AngularBinding getAngularBinding() {
-        return angularBinding;
-    }
-
-    public void setAngularBinding(AngularBinding angularBinding) {
-        this.angularBinding = angularBinding;
-    }
-
-    public AngularEvent getAngularEvent() {
-        return angularEvent;
-    }
-
-    public void setAngularEvent(AngularEvent angularEvent) {
-        this.angularEvent = angularEvent;
-    }
-
-    public AngularDirective getAngularDirective() {
-        return angularDirective;
-    }
-
-    public void setAngularDirective(AngularDirective angularDirective) {
-        this.angularDirective = angularDirective;
-    }
     @Override
     public String toString() {
         if (this.standardAttribute != null) {
@@ -76,13 +37,26 @@ public class AttributeName {
             return this.angularEvent.toString();
         } else if (this.angularDirective != null) {
             return this.angularDirective.toString();
-        } else if (this.twoWayDataBinding!= null) {
+        } else if (this.twoWayDataBinding != null) {
             return this.twoWayDataBinding.toString();
-        }
-        else {
+        } else {
             return super.toString();
         }
     }
 
+    public String generateHtml() {
+        if (this.standardAttribute != null) {
+            return this.standardAttribute.generateHtml();
+        } else if (this.angularBinding != null) {
+            return this.angularBinding.generateHtml();
+        } else if (this.angularEvent != null) {
+            return this.angularEvent.generateHtml();
+        } else if (this.angularDirective != null) {
+            return this.angularDirective.generateHtml();
+        } else if (this.twoWayDataBinding != null) {
+            return this.twoWayDataBinding.generateHtml();
+        } else {
+            return "";
+        }
     }
-
+}

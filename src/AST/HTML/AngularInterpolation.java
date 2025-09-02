@@ -24,19 +24,3 @@ public class AngularInterpolation {
         }
     }
 }
-
-//    @Override
-//    public ASTNode visitAngularInterpolation(YourGrammarParser.AngularInterpolationContext ctx) {
-//        if (ctx == null) {
-//            return null;
-//        }
-//
-//
-//        AngularInterpolationContent content = null;
-//        if (ctx.angularInterpolationContent() != null) {
-//            content = (AngularInterpolationContent) visit(ctx.angularInterpolationContent());
-//        }
-//
-//
-//        return new AngularInterpolation( content);
-//    }

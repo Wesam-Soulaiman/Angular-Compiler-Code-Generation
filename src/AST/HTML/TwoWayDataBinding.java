@@ -3,7 +3,6 @@ package AST.HTML;
 public class TwoWayDataBinding {
     private String modelName;
 
-
     public TwoWayDataBinding(String modelName) {
         this.modelName = modelName;
     }
@@ -18,6 +17,10 @@ public class TwoWayDataBinding {
 
     @Override
     public String toString() {
+        return "[(" + modelName + ")]";
+    }
+
+    public String generateHtml() {
         return "[(" + modelName + ")]";
     }
 }

@@ -29,8 +29,8 @@ public class TsProgram extends Prog {
         return tsProg.generateJS();
     }
 
-//    @Override
-//    public String generateHTML() {
-//        return "";
-//    }
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

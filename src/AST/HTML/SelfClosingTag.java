@@ -40,4 +40,16 @@ public class SelfClosingTag {
             return "<" + tagName.toString() + " />";
         }
     }
+
+    public String generateHTML() {
+        String attrs = attributes.stream()
+                .map(attr -> attr.getAttributeName().toString() + "=\"" + attr.getAttributeValue().toString() + "\"")
+                .collect(Collectors.joining(" "));
+
+        if (!attrs.isEmpty()) {
+            return "<" + tagName.toString() + " " + attrs + " />";
+        } else {
+            return "<" + tagName.toString() + " />";
+        }
+    }
 }

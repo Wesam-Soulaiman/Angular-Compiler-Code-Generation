@@ -35,9 +35,21 @@ public class StartTag {
                 .collect(Collectors.joining(" "));
 
         if (!attrs.isEmpty()) {
-            return  "<" + tagName.toString() + " " + attrs + ">" + "\n";
+            return "<" + tagName.toString() + " " + attrs + ">" + "\n";
         } else {
             return "<" + tagName.toString() + ">" + "\n";
+        }
+    }
+
+    public String generateHtml() {
+        String attrs = attributes.stream()
+                .map(HtmlAttribute::generateHtml)
+                .collect(Collectors.joining(" "));
+
+        if (!attrs.isEmpty()) {
+            return "<" + tagName.generateHtml() + " " + attrs + ">" + "\n";
+        } else {
+            return "<" + tagName.generateHtml() + ">" + "\n";
         }
     }
 }

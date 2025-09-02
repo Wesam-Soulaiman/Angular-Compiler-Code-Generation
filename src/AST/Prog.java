@@ -5,6 +5,5 @@ public abstract class Prog {
     public abstract String toString();
 
     public abstract String generateJS();
-//    public abstract String generateHTML();
-
+    public abstract String generateHTML();
 }

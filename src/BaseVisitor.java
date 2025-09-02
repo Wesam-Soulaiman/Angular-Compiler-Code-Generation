@@ -1994,12 +1994,14 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
 
     @Override
     public Object visitHtmlRoot(AngularParser.HtmlRootContext ctx) {
-        List<HtmlElement> elements = new ArrayList<>();
+        List<HtmlNode> elements = new ArrayList<>();
         for (AngularParser.HtmlelementContext elCtx : ctx.htmlelement()) {
             elements.add((HtmlElement) visit(elCtx));
         }
         return new HtmlProg(elements);
     }
+
+
 
     @Override
     public Prog visitHtmlProgram(AngularParser.HtmlProgramContext ctx) {

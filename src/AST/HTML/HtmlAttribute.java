@@ -1,9 +1,6 @@
 package AST.HTML;
 
-import AST.HTML.AttributeName;
-
 public class HtmlAttribute {
-
     private AttributeName attributeName;
     private AttributeValue attributeValue;
 
@@ -30,19 +27,10 @@ public class HtmlAttribute {
 
     @Override
     public String toString() {
+        return attributeName.toString() + " = " + attributeValue.toString();
+    }
 
-        return attributeName.toString() + " = " + attributeValue.toString() ;
+    public String generateHtml() {
+        return attributeName.generateHtml() + " = " + attributeValue.generateHtml();
     }
 }
-
-//    @Override
-//    public ASTNode visitHtmlAttribute(YourGrammarParser.HtmlAttributeContext ctx) {
-//        if (ctx == null) {
-//            return null;
-//        }
-//
-//        AttributeName name = visit(ctx.attributeName());
-//        Attributevalue value = visit(ctx.attributeValue());
-//
-//        return new HtmlAttribute(name, value);
-//    }

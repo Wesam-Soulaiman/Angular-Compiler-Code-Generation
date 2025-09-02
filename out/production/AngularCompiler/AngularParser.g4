@@ -167,6 +167,7 @@ tsProgContent:
     | interfaceDeclaration #TsInterface
     | decorator            #TsDecorator
     | variableDeclarations #TsVariableDecl
+    | routerDeclaration    #TsRouterDecl //// new
 ;
 
 importStatement
@@ -221,6 +222,31 @@ decoratorProperty
     : decoratorPropertyName COLON decoratorPropertyValue
     ;
 
+/////// new
+routerDeclaration
+    : EXPORT? declarationTypes routerName typeSelector? ASSIGN routers SEMI? ;
+
+routerName: IDDEFINER;
+
+routers
+    : LBRACK routerArrayContent+ RBRACK
+    ;
+
+routerArrayContent: LCURLY routerProperty (COMMA routerProperty)* COMMA? RCURLY COMMA?;
+
+routerPropertyName
+    : PATH
+    | ROUTE_COMPONENT
+    ;
+
+routerPropertyValue
+    : STRING        #pathValue
+    | IDDEFINER     #componentValue
+    ;
+
+routerProperty
+    : routerPropertyName COLON routerPropertyValue
+    ;
 /////2
 classDeclaration
     : EXPORT? CLASS className classBody

@@ -27,8 +27,8 @@ public class HtmlProgram extends Prog {
         return "";
     }
 
-//    @Override
-//    public String generateHTML() {
-//        return htmlProg.generateHTML();
-//    }
+    @Override
+    public String generateHTML() {
+        return htmlProg.generateHTML();
+    }
 }

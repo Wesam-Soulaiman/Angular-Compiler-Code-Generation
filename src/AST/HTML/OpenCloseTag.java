@@ -14,35 +14,18 @@ public class OpenCloseTag {
         this.endTag = endTag;
     }
 
-    public StartTag getStartTag() {
-        return startTag;
-    }
-
-    public void setStartTag(StartTag startTag) {
-        this.startTag = startTag;
-    }
-
-    public List<ElementContent> getContents() {
-        return contents;
-    }
-
-    public void setContents(List<ElementContent> contents) {
-        this.contents = contents;
-    }
-
-    public EndTag getEndTag() {
-        return endTag;
-    }
-
-    public void setEndTag(EndTag endTag) {
-        this.endTag = endTag;
-    }
-
     @Override
     public String toString() {
         String contentStr = contents.stream()
                 .map(ElementContent::toString)
                 .collect(Collectors.joining());
         return startTag.toString() + contentStr + endTag.toString();
+    }
+
+    public String generateHtml() {
+        String contentStr = contents.stream()
+                .map(ElementContent::generateHtml)
+                .collect(Collectors.joining());
+        return startTag.generateHtml() + contentStr + endTag.generateHtml();
     }
 }

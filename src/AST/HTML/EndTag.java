@@ -19,4 +19,8 @@ public class EndTag {
     public String toString() {
         return "</" + tagName.toString() + ">";
     }
+
+    public String generateHtml() {
+        return "</" + tagName.toString() + ">";
+    }
 }

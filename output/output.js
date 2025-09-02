@@ -1,6 +1,3 @@
-
-
-
 @Component({selector: "'app-product-list'", templateUrl: "'./product-list.component.html'", imports: [CommonModule, ProductDetailsComponent], styleUrls: ['./product-list.component.css']})
 class ProductListComponent{
   export selectedProduct : any = null;

@@ -108,6 +108,8 @@ NGFOR       : 'ngFor';
 NGSWITCH    : 'ngSwitch';
 NGMODEL:     'ngModel';
 
+ROUTE_COMPONENT         : 'component';
+PATH:               'path';
 
 
 COMPONENT         : 'Component';

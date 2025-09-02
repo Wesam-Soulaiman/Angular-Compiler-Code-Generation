@@ -19,18 +19,8 @@ public class AngularEvent {
     public String toString() {
         return "(" + event.toString() + ")";
     }
+
+    public String generateHtml() {
+        return "(" + event.generateHtml() + ")";
+    }
 }
-
-
-//    @Override
-//    public ASTNode visitAngularEvent(YourGrammarParser.AngularEventContext ctx) {
-//        if (ctx == null) {
-//            return null;
-//        }
-//
-//
-//        EventName event =(EventName) visit(ctx.eventName());
-//
-//
-//        return new AngularEvent( event);
-//    }

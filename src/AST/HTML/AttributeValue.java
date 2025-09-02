@@ -19,4 +19,8 @@ public class AttributeValue {
     public String toString() {
         return name;
     }
+
+    public String generateHtml() {
+        return name;
+    }
 }

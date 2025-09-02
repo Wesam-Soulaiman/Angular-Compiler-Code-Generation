@@ -11,16 +11,8 @@ public class AngularBinding {
     public String toString() {
         return "[" + bindingName.toString() + "]";
     }
+
+    public String generateHtml() {
+        return "[" + bindingName.generateHtml() + "]";
+    }
 }
-
-
-    //    @Override
-    //    public ASTNode visitAngularBinding(YourGrammarParser.AngularBindingContext ctx) {
-    //        if (ctx == null) {
-    //            return null;
-    //        }
-    //
-    //        BindingName binding = (BindingName) visit(ctx.bindingName());
-    //
-    //        return new AngularBinding( binding);
-    //    }
