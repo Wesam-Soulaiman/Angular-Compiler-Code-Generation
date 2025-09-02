@@ -19,4 +19,9 @@ public class TsClass extends TsProgContent {
     public String toString() {
         return classDeclaration.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return classDeclaration.generateJS();
+    }
 }

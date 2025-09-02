@@ -1,7 +1,7 @@
 package AST.TS;
 
 public class VariableDeclaration_ extends VariableDeclarations {
-    VariableDeclaration variableDeclaration;
+    private VariableDeclaration variableDeclaration;
 
     public VariableDeclaration_(VariableDeclaration variableDeclaration) {
         this.variableDeclaration = variableDeclaration;
@@ -17,6 +17,11 @@ public class VariableDeclaration_ extends VariableDeclarations {
 
     @Override
     public String toString() {
-        return variableDeclaration.toString(); // يُعيد النص من داخل متغير عادي
+        return variableDeclaration.toString(); // TypeScript representation
+    }
+
+    public String generateJS() {
+        // JS doesn't have type annotations, so we can omit typeSelector
+        return variableDeclaration.generateJS();
     }
 }

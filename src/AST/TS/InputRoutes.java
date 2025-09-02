@@ -5,4 +5,9 @@ public class InputRoutes extends NamedImport {
     public String toString() {
         return "Routes";
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

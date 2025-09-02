@@ -9,10 +9,6 @@ public class ObjectProperty {
         this.value = value;
     }
 
-    public ObjectPropertyName getPropertyName() {
-        return propertyName;
-    }
-
     public void setPropertyName(ObjectPropertyName propertyName) {
         this.propertyName = propertyName;
     }
@@ -28,5 +24,9 @@ public class ObjectProperty {
     @Override
     public String toString() {
         return propertyName.toString() + ": " + value.toString();
+    }
+
+    public String generateJS() {
+        return propertyName.toString() + ": " + value.generateJS();
     }
 }

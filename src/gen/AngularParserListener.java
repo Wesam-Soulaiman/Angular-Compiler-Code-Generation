@@ -144,6 +144,18 @@ public interface AngularParserListener extends ParseTreeListener {
 	 */
 	void exitNavTag(AngularParser.NavTagContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code BodyTag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void enterBodyTag(AngularParser.BodyTagContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BodyTag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 */
+	void exitBodyTag(AngularParser.BodyTagContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code SpanTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
 	 * @param ctx the parse tree
@@ -227,18 +239,6 @@ public interface AngularParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitImgTag(AngularParser.ImgTagContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Inputtag}
-	 * labeled alternative in {@link AngularParser#tagName}.
-	 * @param ctx the parse tree
-	 */
-	void enterInputtag(AngularParser.InputtagContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Inputtag}
-	 * labeled alternative in {@link AngularParser#tagName}.
-	 * @param ctx the parse tree
-	 */
-	void exitInputtag(AngularParser.InputtagContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UlTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
@@ -940,6 +940,18 @@ public interface AngularParserListener extends ParseTreeListener {
 	 */
 	void exitTsVariableDecl(AngularParser.TsVariableDeclContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code TsRouterDecl}
+	 * labeled alternative in {@link AngularParser#tsProgContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterTsRouterDecl(AngularParser.TsRouterDeclContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TsRouterDecl}
+	 * labeled alternative in {@link AngularParser#tsProgContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitTsRouterDecl(AngularParser.TsRouterDeclContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AngularParser#importStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -1189,6 +1201,90 @@ public interface AngularParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDecoratorProperty(AngularParser.DecoratorPropertyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routerDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouterDeclaration(AngularParser.RouterDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routerDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouterDeclaration(AngularParser.RouterDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routerName}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouterName(AngularParser.RouterNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routerName}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouterName(AngularParser.RouterNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routers}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouters(AngularParser.RoutersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routers}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouters(AngularParser.RoutersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routerArrayContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouterArrayContent(AngularParser.RouterArrayContentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routerArrayContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouterArrayContent(AngularParser.RouterArrayContentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routerPropertyName}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouterPropertyName(AngularParser.RouterPropertyNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routerPropertyName}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouterPropertyName(AngularParser.RouterPropertyNameContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code pathValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterPathValue(AngularParser.PathValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code pathValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitPathValue(AngularParser.PathValueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code componentValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterComponentValue(AngularParser.ComponentValueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code componentValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitComponentValue(AngularParser.ComponentValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AngularParser#routerProperty}.
+	 * @param ctx the parse tree
+	 */
+	void enterRouterProperty(AngularParser.RouterPropertyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AngularParser#routerProperty}.
+	 * @param ctx the parse tree
+	 */
+	void exitRouterProperty(AngularParser.RouterPropertyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AngularParser#classDeclaration}.
 	 * @param ctx the parse tree

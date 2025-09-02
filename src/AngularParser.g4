@@ -40,6 +40,7 @@ prog
     tagName
         : DIV      #DivTag
         | NAV      #NavTag ////////// new
+        | BODY      #BodyTag ////////// new
         | SPAN     #SpanTag
         | P        #PTag
         | A        #ATag
@@ -47,7 +48,7 @@ prog
         | INPUT    #InputTag
         | FORM     #FormTag
         | IMG      #ImgTag
-        | INPUTTAG    #Inputtag
+        | INPUTTAG    #InputTag
         | UL       #UlTag
         | LI       #LiTag
         | H1       #H1Tag
@@ -166,6 +167,7 @@ tsProgContent:
     | interfaceDeclaration #TsInterface
     | decorator            #TsDecorator
     | variableDeclarations #TsVariableDecl
+    | routerDeclaration    #TsRouterDecl //// new
 ;
 
 importStatement
@@ -211,17 +213,39 @@ decoratorPropertyName
     | PROVIDEDIN     #ProvidedInProperty
     ;
 
-
-
 decoratorPropertyValue
     : STRING    #StringValues
     | array     #ArrayValue
     ;
 
-
-
 decoratorProperty
     : decoratorPropertyName COLON decoratorPropertyValue
+    ;
+
+/////// new
+routerDeclaration
+    : EXPORT? declarationTypes routerName typeSelector? ASSIGN routers SEMI? ;
+
+routerName: IDDEFINER;
+
+routers
+    : LBRACK routerArrayContent+ RBRACK
+    ;
+
+routerArrayContent: LCURLY routerProperty (COMMA routerProperty)* COMMA? RCURLY COMMA?;
+
+routerPropertyName
+    : PATH
+    | ROUTE_COMPONENT
+    ;
+
+routerPropertyValue
+    : STRING        #pathValue
+    | IDDEFINER     #componentValue
+    ;
+
+routerProperty
+    : routerPropertyName COLON routerPropertyValue
     ;
 /////2
 classDeclaration

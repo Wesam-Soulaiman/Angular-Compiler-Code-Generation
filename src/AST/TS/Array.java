@@ -17,10 +17,12 @@ public class Array {
 
     @Override
     public String toString() {
-        if (content == null) {
-            return "[]";
-        } else {
-            return "[" + content.toString() + "]";
-        }
+        if (content == null) return "[]";
+        return "[" + content.toString() + "]";
+    }
+
+    public String generateJS() {
+        if (content == null) return "[]";
+        return "[" + content.generateJS() + "]";
     }
 }

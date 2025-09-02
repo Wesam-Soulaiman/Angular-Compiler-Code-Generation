@@ -10,14 +10,6 @@ public class FunctionBody {
         this.statements = statements;
     }
 
-    public List<Statement> getStatements() {
-        return statements;
-    }
-
-    public void setStatements(List<Statement> statements) {
-        this.statements = statements;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -27,5 +19,26 @@ public class FunctionBody {
         }
         sb.append("}");
         return sb.toString();
+    }
+
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n");
+        for (Statement stmt : statements) {
+            sb.append("  ").append(stmt.toString()).append("\n");
+        }
+        sb.append("}");
+        return sb.toString();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("{\n");
+//        for (Statement stmt : statements) {
+//            if (stmt instanceof TsProgContent) {
+//                sb.append("  ").append(((TsProgContent) stmt).generateJS()).append("\n");
+//            } else {
+//                sb.append("  ").append(stmt.toString()).append("\n");
+//            }
+//        }
+//        sb.append("}");
+//        return sb.toString();
     }
 }

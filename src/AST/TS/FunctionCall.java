@@ -1,5 +1,7 @@
 package AST.TS;
+
 import java.util.List;
+
 public class FunctionCall {
     private String functionName;
     private List<Arguments> arguments;
@@ -28,14 +30,26 @@ public class FunctionCall {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(functionName);
-        sb.append("(");
+        sb.append(functionName).append("(");
         if (arguments != null && !arguments.isEmpty()) {
             for (int i = 0; i < arguments.size(); i++) {
                 sb.append(arguments.get(i).toString());
                 if (i < arguments.size() -1) {
                     sb.append(", ");
                 }
+            }
+        }
+        sb.append(")");
+        return sb.toString();
+    }
+
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(functionName).append("(");
+        if (arguments != null && !arguments.isEmpty()) {
+            for (int i = 0; i < arguments.size(); i++) {
+                sb.append(arguments.get(i).generateJS());
+                if (i < arguments.size() - 1) sb.append(", ");
             }
         }
         sb.append(")");

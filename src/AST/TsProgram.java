@@ -23,4 +23,14 @@ public class TsProgram extends Prog {
     public String toString() {
         return tsProg.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return tsProg.generateJS();
+    }
+
+//    @Override
+//    public String generateHTML() {
+//        return "";
+//    }
 }

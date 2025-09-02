@@ -29,4 +29,8 @@ public class MemberAccess {
     public String toString() {
         return left.toString() + "." + memberName;
     }
+
+    public String generateJS() {
+        return left.generateJS() + "." + memberName;
+    }
 }

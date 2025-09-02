@@ -1,32 +1,44 @@
 package CodeGen;
 
 import AST.*;
+import AST.TS.TsProg;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class CodeGenerator {
 
-    private final String baseName;
+    public void generate(HtmlProgram htmlProg, TsProgram routesProg, CssProgram cssProg, TsProgram tsProg) {
+        String htmlOut = htmlProg.toString();
+        String routesOut = transpileTs(routesProg);
+        String cssOut  = cssProg.toString();
+        String jsOut   = transpileTs(tsProg);
 
-    public CodeGenerator(String baseName) {
-        this.baseName = baseName;
+        // inject <script> jsOut </script> into HTML
+        htmlOut = injectRoutes(htmlOut, routesOut);
+        htmlOut = injectScript(htmlOut, jsOut);
+
+        FileUtil.writeFile("C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\output\\output.html", htmlOut);
+        FileUtil.writeFile("C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\output\\output.css", cssOut);
+        FileUtil.writeFile("C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\output\\output.js", jsOut);
     }
 
-    public void generate(Prog prog) throws IOException {
-        if (prog instanceof TsProgram) {
-            writeFile(baseName + ".tsx", prog.toString());
-        } else if (prog instanceof HtmlProgram) {
-            writeFile(baseName + ".html", prog.toString());
-        } else if (prog instanceof CssProgram) {
-            writeFile(baseName + ".css", prog.toString());
-        } else {
-            throw new IllegalArgumentException("Unknown program type: " + prog.getClass());
-        }
+    private String transpileTs(TsProgram tsProg) {
+        return tsProg.generateJS();
     }
 
-    private void writeFile(String fileName, String content) throws IOException {
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write(content);
-        }
+//    private String transpileHTML(HtmlProgram htmlProg) {
+//        return htmlProg.generateHTML();
+//    }
+
+    private String injectScript(String html, String js) {
+        return html.replace("</script>",  js + "\n</script>");
+
+    }
+
+    private String injectRoutes(String html, String js) {
+        return html.replace("</body>", "<script>\n" + js + "\n</script>\n</body>");
+
     }
 }
+

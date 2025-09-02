@@ -19,4 +19,10 @@ public class TsVariableDecl extends TsProgContent {
     public String toString() {
         return variableDeclarations.toString();
     }
+
+    // New method for JS generation
+    @Override
+    public String generateJS() {
+        return variableDeclarations.generateJS();
+    }
 }

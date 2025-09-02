@@ -7,16 +7,14 @@ public class TsInterface extends TsProgContent {
         this.interfaceDeclaration = interfaceDeclaration;
     }
 
-    public InterfaceDeclaration getInterfaceDeclaration() {
-        return interfaceDeclaration;
-    }
-
-    public void setInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration) {
-        this.interfaceDeclaration = interfaceDeclaration;
-    }
-
     @Override
     public String toString() {
         return interfaceDeclaration.toString();
+    }
+
+    @Override
+    public String generateJS() {
+        // Interfaces are erased in JS, so return empty string
+        return "";
     }
 }

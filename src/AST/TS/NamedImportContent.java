@@ -1,7 +1,6 @@
 package AST.TS;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class NamedImportContent {
 
@@ -29,6 +28,16 @@ public class NamedImportContent {
             }
         }
         return sb.toString();
+    }
 
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < namedImports.size(); i++) {
+            sb.append(namedImports.get(i).generateJS());
+            if (i < namedImports.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
     }
 }

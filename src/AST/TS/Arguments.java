@@ -23,11 +23,17 @@ public class Arguments {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < expressions.size(); i++) {
             sb.append(expressions.get(i).toString());
-            if (i < expressions.size() - 1) {
-                sb.append(", ");
-            }
+            if (i < expressions.size() - 1) sb.append(", ");
+        }
+        return sb.toString();
+    }
+
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < expressions.size(); i++) {
+            sb.append(expressions.get(i).generateJS());
+            if (i < expressions.size() - 1) sb.append(", ");
         }
         return sb.toString();
     }
 }
-

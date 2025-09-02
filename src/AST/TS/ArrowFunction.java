@@ -8,16 +8,14 @@ public class ArrowFunction extends FunctionDeclaration {
         this.arrowFunctionDeclaration = arrowFunctionDeclaration;
     }
 
-    public ArrowFunctionDeclaration getArrowFunctionDeclaration() {
-        return arrowFunctionDeclaration;
-    }
-
-    public void setArrowFunctionDeclaration(ArrowFunctionDeclaration arrowFunctionDeclaration) {
-        this.arrowFunctionDeclaration = arrowFunctionDeclaration;
-    }
-
     @Override
     public String toString() {
         return arrowFunctionDeclaration.toString();
+    }
+
+    @Override
+    public String generateJS() {
+        // Delegate to ArrowFunctionDeclaration
+        return arrowFunctionDeclaration.generateJS();
     }
 }

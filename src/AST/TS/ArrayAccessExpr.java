@@ -20,4 +20,8 @@ public class ArrayAccessExpr extends PrimaryExpr {
     public String toString() {
         return arrayAccess.toString();
     }
+
+    public String generateJS() {
+        return arrayAccess.generateJS();
+    }
 }

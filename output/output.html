@@ -1,0 +1,37 @@
+<div style = "display: flex; margin-left: 20px;">
+
+   <div style = "flex: 5;">
+
+   <h1>
+List</h1>
+   <div *ngFor = "let product of products" (click) = "selectProduct(product)" style = "border: 1.5px solid black; text-align: center; margin-top: 2px;">
+
+   <h3>
+{{product.name}}</h3>
+   <img [src] = "product.image" alt = "product img" /></div></div>
+   <div style = "flex: 7;">
+
+   <app-product-details *ngIf = "selectedProduct" [product] = "selectedProduct">
+</app-product-details>
+   <body>
+<script>
+
+
+
+const routes = [{path: '', component: ProductListComponent}, {path: 'add', component: AddProductComponent}];
+
+
+
+@Component({selector: "'app-product-list'", templateUrl: "'./product-list.component.html'", imports: [CommonModule, ProductDetailsComponent], styleUrls: ['./product-list.component.css']})
+class ProductListComponent{
+  export selectedProduct : any = null;
+  export products : Product[] = [
+	{id: 1, name: 'camera', description: 'Camera Description', image: 'https://via.placeholder.com/150'}, 
+	{id: 2, name: 'laptop', description: 'Laptop Description', image: 'https://via.placeholder.com/150'}, 
+	{id: 3, name: 'shampoo', description: 'Shampoo Description', image: 'https://via.placeholder.com/150'}];
+  selectProduct(product: : Product): void {
+  this.selectedProduct = product
+}
+}
+</script>
+</body></div></div>

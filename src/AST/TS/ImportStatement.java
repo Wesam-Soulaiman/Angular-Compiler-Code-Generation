@@ -3,7 +3,7 @@ package AST.TS;
 public class ImportStatement {
 
     private ImportContent importContent;
-    private String fromModule;  // قيمة STRING
+    private String fromModule;
 
     public ImportStatement(ImportContent importContent, String fromModule) {
         this.importContent = importContent;
@@ -29,5 +29,9 @@ public class ImportStatement {
     @Override
     public String toString() {
         return "import " + importContent.toString() + " from \"" + fromModule + "\";";
+    }
+
+    public String generateJS() {
+        return "";
     }
 }

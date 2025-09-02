@@ -8,4 +8,8 @@ public class PercentOperator extends BinaryOperator {
     public String toString() {
         return "%";
     }
+
+    public String generateJS() {
+        return "%";
+    }
 }

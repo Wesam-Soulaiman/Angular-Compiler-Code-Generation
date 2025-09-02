@@ -4,4 +4,3 @@ public abstract class DecoratorPropertyName {
     @Override
     public abstract String toString();
 }
-

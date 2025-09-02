@@ -20,4 +20,8 @@ public class LiteralExpr extends PrimaryExpr {
     public String toString() {
         return literal.toString();
     }
+
+    public String generateJS() {
+        return literal.generateJS();
+    }
 }

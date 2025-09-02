@@ -1,0 +1,8 @@
+<div style="border: 1px solid #ddd; padding: 16px; margin: 8px; margin-top: 80px;">
+  <h2>Product Details</h2>
+  <img
+    [src]="product.image"
+    alt="product img"
+    style="max-width: 100%; height: auto;"
+  />
+</div>

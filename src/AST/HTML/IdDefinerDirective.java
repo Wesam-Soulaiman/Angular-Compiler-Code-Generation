@@ -9,6 +9,6 @@ public class IdDefinerDirective extends DirectiveName {
 
     @Override
     public String toString() {
-        return "Directive: #" + id;
+        return  id;
     }
 }

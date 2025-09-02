@@ -9,6 +9,6 @@ public class CustomBinding extends BindingName {
 
     @Override
     public String toString() {
-        return "#" + name;
+        return name;
     }
 }

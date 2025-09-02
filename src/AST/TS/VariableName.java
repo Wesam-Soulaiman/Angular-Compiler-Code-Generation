@@ -19,4 +19,8 @@ public class VariableName {
     public String toString() {
         return idDefiner;
     }
+
+    public String generateJS() {
+        return idDefiner;
+    }
 }

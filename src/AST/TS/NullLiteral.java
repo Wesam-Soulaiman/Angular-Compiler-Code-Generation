@@ -6,4 +6,9 @@ public class NullLiteral extends Literal {
     public String toString() {
         return "null";
     }
+
+    @Override
+    public String generateJS() {
+        return "null";
+    }
 }

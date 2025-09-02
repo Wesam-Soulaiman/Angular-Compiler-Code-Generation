@@ -40,6 +40,7 @@ prog
     tagName
         : DIV      #DivTag
         | NAV      #NavTag ////////// new
+        | BODY      #BodyTag ////////// new
         | SPAN     #SpanTag
         | P        #PTag
         | A        #ATag
@@ -47,7 +48,7 @@ prog
         | INPUT    #InputTag
         | FORM     #FormTag
         | IMG      #ImgTag
-        | INPUTTAG    #Inputtag
+        | INPUTTAG    #InputTag
         | UL       #UlTag
         | LI       #LiTag
         | H1       #H1Tag
@@ -126,7 +127,7 @@ prog
 
     eventName
         : CLICK      #ClickEvent
-        | NG_SUBMIT      #SubmitEvent //////////// new
+        | NG_SUBMIT      #NgSubmitEvent //////////// new
         | CHANGE     #ChangeEvent
         | INPUT      #InputEvent
         | SUBMIT     #SubmitEvent
@@ -211,18 +212,15 @@ decoratorPropertyName
     | PROVIDEDIN     #ProvidedInProperty
     ;
 
-
-
 decoratorPropertyValue
     : STRING    #StringValues
     | array     #ArrayValue
     ;
 
-
-
 decoratorProperty
     : decoratorPropertyName COLON decoratorPropertyValue
     ;
+
 /////2
 classDeclaration
     : EXPORT? CLASS className classBody

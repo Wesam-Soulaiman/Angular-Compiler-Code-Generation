@@ -7,4 +7,9 @@ public class ComponentImport extends NamedImport {
     public String toString() {
         return "Component";
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

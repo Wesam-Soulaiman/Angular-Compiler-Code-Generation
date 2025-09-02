@@ -29,4 +29,9 @@ public class DecoratorBasedInput {
     public String toString() {
         return "@Input() " + variableName.toString() + "! : " + typeSelector.toString() + ";";
     }
+
+    public String generateJS() {
+        // JS doesn't have decorators; you can just output property name and type as comment
+        return "// " + variableName.toString() + ": " + typeSelector.toString();
+    }
 }

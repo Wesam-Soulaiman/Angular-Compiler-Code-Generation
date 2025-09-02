@@ -29,4 +29,8 @@ public class Decorator {
     public String toString() {
         return "@" + namedImport.toString() + "(" + decoratorObject.toString() + ")";
     }
+
+    public String generateJS() {
+        return "@" + namedImport.toString() + "(" + decoratorObject.generateJS() + ")";
+    }
 }

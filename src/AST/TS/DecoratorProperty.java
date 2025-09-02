@@ -1,7 +1,6 @@
 package AST.TS;
 
 public class DecoratorProperty {
-
     private DecoratorPropertyName propertyName;
     private DecoratorPropertyValue propertyValue;
 
@@ -28,6 +27,10 @@ public class DecoratorProperty {
 
     @Override
     public String toString() {
-
         return propertyName.toString() + ": " + propertyValue.toString();
-    }}
+    }
+
+    public String generateJS() {
+        return propertyName.toString() + ": " + propertyValue.generateJS();
+    }
+}

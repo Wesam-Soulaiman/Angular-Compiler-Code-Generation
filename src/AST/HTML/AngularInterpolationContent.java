@@ -3,7 +3,8 @@ import AST.TS.Expression;
 
 import java.util.List;
 
-public class AngularInterpolationContent {
+public class
+AngularInterpolationContent {
 
 
     private List<Expression> pipeExpressions;
@@ -25,26 +26,12 @@ public class AngularInterpolationContent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(pipeExpressions.toString());
-        for (Expression expr : pipeExpressions) {
-            sb.append(" | ").append(expr.toString());
+        for (int i = 0; i < pipeExpressions.size(); i++) {
+            if (i > 0) {
+                sb.append(" | ");
+            }
+            sb.append(pipeExpressions.get(i));
         }
         return sb.toString();
     }
 }
-
-
-//  @Override
-//public ASTNode visitAngularInterpolationContent(YourGrammarParser.AngularInterpolationContentContext ctx) {
-//    if (ctx == null) {
-//        return null;
-//    }
-//
-//    List<Expression> expressions = ctx.expression() == null ?
-//        new ArrayList<>() :
-//        ctx.expression().stream()
-//            .map(exprCtx -> (Expression) visitExpression(exprCtx))
-//            .collect(Collectors.toList());
-//
-//    return new AngularInterpolationContent(expressions);
-//}

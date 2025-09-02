@@ -8,4 +8,8 @@ public class PlusOperator extends BinaryOperator {
     public String toString() {
         return "+";
     }
+
+    public String generateJS() {
+        return "+";
+    }
 }

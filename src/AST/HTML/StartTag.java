@@ -35,9 +35,9 @@ public class StartTag {
                 .collect(Collectors.joining(" "));
 
         if (!attrs.isEmpty()) {
-            return "<" + tagName.toString() + " " + attrs + ">";
+            return  "<" + tagName.toString() + " " + attrs + ">" + "\n";
         } else {
-            return "<" + tagName.toString() + ">";
+            return "<" + tagName.toString() + ">" + "\n";
         }
     }
 }

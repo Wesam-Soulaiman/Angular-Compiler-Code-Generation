@@ -19,4 +19,9 @@ public class DecoratorInput extends VariableDeclarations {
     public String toString() {
         return decoratorBasedInput.toString();
     }
+
+    public String generateJS() {
+        // For TS to JS, @Input() decorator is Angular-specific; can output property name and type as comment or JS equivalent
+        return "// " + decoratorBasedInput.toString();
+    }
 }

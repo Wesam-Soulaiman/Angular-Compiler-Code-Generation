@@ -51,9 +51,9 @@ public class VariableDeclaration {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("export");
+        sb.append("export ");
         if (declarationTypes != null) {
-            sb.append(declarationTypes.toString()).append(" ");
+            sb.append(declarationTypes.toString().toLowerCase()).append(" ");
         }
 
         sb.append(variableName.toString());
@@ -63,9 +63,31 @@ public class VariableDeclaration {
         }
 
         if (variableValue != null) {
-            sb.append(" = ").append(variableValue.toString()).append(";");
+            sb.append(" = ").append(variableValue.toString());
         }
 
+        sb.append(";");
+        return sb.toString();
+    }
+
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+
+
+        // JS version: drop type annotations
+        if (declarationTypes != null) {
+            sb.append(declarationTypes.toString().toLowerCase()).append(" ");
+        } else {
+            sb.append("let "); // default to let if missing
+        }
+
+        sb.append(variableName.generateJS());
+
+        if (variableValue != null) {
+            sb.append(" = ").append(variableValue.generateJS());
+        }
+
+        sb.append(";");
         return sb.toString();
     }
 }

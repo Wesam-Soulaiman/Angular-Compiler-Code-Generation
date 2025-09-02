@@ -6,4 +6,9 @@ public class UndefinedLiteral extends Literal {
     public String toString() {
         return "undefined";
     }
+
+    @Override
+    public String generateJS() {
+        return "undefined";
+    }
 }

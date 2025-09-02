@@ -1751,14 +1751,14 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
             return null;
         }
     }
-    @Override
-    public Object visitTwoWayDataBinding(AngularParser.TwoWayDataBindingContext ctx) {
-        if (ctx == null) {
-            return null;
-        }
-        String model = ctx.IDDEFINER.getText();
-        return new TwoWayDataBinding(model);
-    }
+//    @Override
+//    public Object visitTwoWayDataBinding(AngularParser.TwoWayDataBindingContext ctx) {
+//        if (ctx == null) {
+//            return null;
+//        }
+//        String model = ctx.IDDEFINER.getText();
+//        return new TwoWayDataBinding(model);
+//    }
 
 
     @Override
@@ -2031,6 +2031,11 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
     @Override
     public Object visitNavTag(AngularParser.NavTagContext ctx) {
         return new NavTag();
+    }
+
+    @Override
+    public Object visitBodyTag(AngularParser.BodyTagContext ctx) {
+        return new BodyTag();
     }
 
     @Override

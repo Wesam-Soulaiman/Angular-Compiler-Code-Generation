@@ -24,4 +24,11 @@ public class Object {
             return "{" + content.toString() + "}";
         }
     }
+
+    public String generateJS() {
+        if (content == null) {
+            return "{}";
+        }
+        return "{" + content.generateJS() + "}";
+    }
 }

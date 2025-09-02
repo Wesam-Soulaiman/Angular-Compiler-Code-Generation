@@ -50,6 +50,7 @@ CSS_UNIT          : ('px' | 'em' | 'rem' | '%' | 'vh' | 'vw');
 
 
 DIV       : 'div';
+BODY      : 'body';
 NAV       : 'nav'; ///// new
 SPAN      : 'span';
 P         : 'p';
@@ -81,7 +82,6 @@ BORDER       : 'border';
 BOXSIZING       : 'box-sizing';
 
 
-BODY         : 'body';
 HTML         : 'html';
 
 
@@ -107,6 +107,7 @@ NGIF        : 'ngIf';
 NGFOR       : 'ngFor';
 NGSWITCH    : 'ngSwitch';
 NGMODEL:     'ngModel';
+
 
 
 COMPONENT         : 'Component';

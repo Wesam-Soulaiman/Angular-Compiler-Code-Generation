@@ -17,51 +17,45 @@ public class RegularFunctionDeclaration {
         return regularFunctionName;
     }
 
-    public void setRegularFunctionName(RegularFunctionName regularFunctionName) {
-        this.regularFunctionName = regularFunctionName;
-    }
-
     public Parameters getParameters() {
         return parameters;
-    }
-
-    public void setParameters(Parameters parameters) {
-        this.parameters = parameters;
     }
 
     public TypeSelector getTypeSelector() {
         return typeSelector;
     }
 
-    public void setTypeSelector(TypeSelector typeSelector) {
-        this.typeSelector = typeSelector;
-    }
-
     public FunctionBody getFunctionBody() {
         return functionBody;
-    }
-
-    public void setFunctionBody(FunctionBody functionBody) {
-        this.functionBody = functionBody;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("function ").append(regularFunctionName.toString()).append("(");
-
-        if (parameters.toString() != null) {
+        if (parameters != null) {
             sb.append(parameters.toString());
         }
-
         sb.append(")");
-
-        if (typeSelector.toString() != null) {
-            sb.append(" ").append(typeSelector.toString());
+        if (typeSelector != null) {
+            sb.append(": ").append(typeSelector.toString());
         }
-
         sb.append(" ").append(functionBody.toString());
+        return sb.toString();
+    }
 
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("function ").append(regularFunctionName.toString()).append("(");
+        if (parameters != null) {
+            sb.append(parameters.generateJS());
+        }
+        sb.append(") ");
+        if (functionBody != null) {
+            sb.append(functionBody.generateJS());
+        } else {
+            sb.append("{}");
+        }
         return sb.toString();
     }
 }

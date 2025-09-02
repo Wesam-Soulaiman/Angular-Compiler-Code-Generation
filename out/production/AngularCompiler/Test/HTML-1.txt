@@ -13,5 +13,6 @@
   <div style="flex: 7;">
     <app-product-details *ngIf="selectedProduct" [product]="selectedProduct">
     </app-product-details>
+    <body></body>
   </div>
 </div>

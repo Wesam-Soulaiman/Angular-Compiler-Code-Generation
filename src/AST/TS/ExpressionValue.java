@@ -20,4 +20,8 @@ public class ExpressionValue extends VariableValue {
     public String toString() {
         return expression.toString();
     }
+
+    public String generateJS() {
+        return expression.generateJS();
+    }
 }

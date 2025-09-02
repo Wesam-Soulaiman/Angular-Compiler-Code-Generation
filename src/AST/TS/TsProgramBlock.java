@@ -6,6 +6,7 @@ public class TsProgramBlock extends TsProg {
     private List<TsProgContent> contents;
 
     public TsProgramBlock(List<TsProgContent> contents) {
+        super((List) contents); // ✅ Pass contents up as TsNode list
         this.contents = contents;
     }
 

@@ -19,4 +19,9 @@ public class TsImport extends TsProgContent {
     public String toString() {
         return importStatement.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

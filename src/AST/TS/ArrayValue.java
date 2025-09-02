@@ -21,4 +21,9 @@ public class ArrayValue extends DecoratorPropertyValue {
     public String toString() {
         return elements.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return elements.generateJS();
+    }
 }

@@ -21,4 +21,14 @@ public class CssProgram extends Prog {
     public String toString() {
         return cssRoot.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
+
+//    @Override
+//    public String generateHTML() {
+//        return "";
+//    }
 }

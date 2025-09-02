@@ -20,4 +20,8 @@ public class FunctionCallExpr extends PrimaryExpr {
     public String toString() {
         return functionCall.toString();
     }
+
+    public String generateJS() {
+        return functionCall.generateJS();
+    }
 }

@@ -10,6 +10,11 @@ public class StringLiteral extends Literal {
 
     @Override
     public String toString() {
-        return  value ;
+        return value;
+    }
+
+    @Override
+    public String generateJS() {
+        return "\"" + value + "\""; // wrap in quotes for JS strings
     }
 }

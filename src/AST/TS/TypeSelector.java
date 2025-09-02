@@ -1,21 +1,18 @@
 package AST.TS;
 
-public class TypeSelector{
-        private Type type;
+public class TypeSelector {
+    private Type type;
 
-        public TypeSelector(Type type) {
-            this.type = type;
-        }
+    public TypeSelector(Type type) {
+        this.type = type;
+    }
 
-        public Type getType() {
-            return type;
-        }
+    @Override
+    public String toString() {
+        return ": " + type.toString();
+    }
 
-        public void setType(Type type) {
-            this.type = type;
-        }
-
-        @Override
-        public String toString() {
-            return ": " + type.toString();
-        }}
+    public String generateJS() {
+        return "";
+    }
+}

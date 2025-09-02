@@ -1,5 +1,7 @@
 package AST.TS;
+
 import java.util.List;
+
 public class ArrayContent {
     private List<Expression> elements;
 
@@ -19,10 +21,17 @@ public class ArrayContent {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
-            sb.append(elements.get(i).toString());
-            if (i < elements.size() - 1) {
-                sb.append(", ");
-            }
+            sb.append("\n\t").append(elements.get(i).toString());
+            if (i < elements.size() - 1) sb.append(", ");
+        }
+        return sb.toString();
+    }
+
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < elements.size(); i++) {
+            sb.append(elements.get(i).toString()); // Expressions already have toString() generating JS
+            if (i < elements.size() - 1) sb.append(", ");
         }
         return sb.toString();
     }

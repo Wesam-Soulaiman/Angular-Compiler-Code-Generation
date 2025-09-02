@@ -9,6 +9,6 @@ public class CustomEvent extends EventName {
 
     @Override
     public String toString() {
-        return "#" + name;
+        return name;
     }
 }

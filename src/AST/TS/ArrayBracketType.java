@@ -9,7 +9,6 @@ public class ArrayBracketType extends BaseType {
 
     @Override
     public String toString() {
-        System.out.println(baseType.toString()+"rawannnnnnnnnnnnnnnnnnn");
 
         return baseType.toString() + "[]";
     }

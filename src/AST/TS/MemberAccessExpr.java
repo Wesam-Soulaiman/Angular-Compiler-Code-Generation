@@ -20,4 +20,8 @@ public class MemberAccessExpr extends PrimaryExpr {
     public String toString() {
         return memberAccess.toString();
     }
+
+    public String generateJS() {
+        return memberAccess.generateJS();
+    }
 }

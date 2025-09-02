@@ -1,9 +1,7 @@
 package AST.TS;
 
-
 public class DecoratorObject {
-
-    private DecoratorObjectContent content;  // اختياري
+    private DecoratorObjectContent content;  // optional
 
     public DecoratorObject(DecoratorObjectContent content) {
         this.content = content;
@@ -19,7 +17,13 @@ public class DecoratorObject {
 
     @Override
     public String toString() {
-       return "{" + content.toString() +"}";
+        return "{" + content.toString() + "}";
+    }
+
+    public String generateJS() {
+        if (content != null) {
+            return "{" + content.generateJS() + "}";
+        }
+        return "{}";
     }
 }
-

@@ -20,4 +20,8 @@ public class ArrayExpr extends PrimaryExpr {
     public String toString() {
         return array.toString();
     }
+
+    public String generateJS() {
+        return array.generateJS();
+    }
 }

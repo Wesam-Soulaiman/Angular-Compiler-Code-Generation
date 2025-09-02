@@ -20,4 +20,9 @@ public class IdDefinerElement extends MemberAccessElement {
     public String toString() {
         return idDefiner;
     }
+
+    @Override
+    public String generateJS() {
+        return idDefiner;
+    }
 }

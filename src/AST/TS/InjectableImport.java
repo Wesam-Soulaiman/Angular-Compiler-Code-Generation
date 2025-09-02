@@ -7,4 +7,9 @@ public class InjectableImport extends NamedImport {
     public String toString() {
         return "Injectable";
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

@@ -12,4 +12,9 @@ public class NumberLiteral extends Literal {
     public String toString() {
         return value;
     }
+
+    @Override
+    public String generateJS() {
+        return value;
+    }
 }

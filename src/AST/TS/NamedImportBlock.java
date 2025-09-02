@@ -19,7 +19,6 @@ public class NamedImportBlock {
 
     @Override
     public String toString() {
-        System.out.println("rawan");
         if (namedImports == null || namedImports.isEmpty()) {
             return "{}";
         }
@@ -28,6 +27,23 @@ public class NamedImportBlock {
         sb.append("{ ");
         for (int i = 0; i < namedImports.size(); i++) {
             sb.append(namedImports.get(i).toString());
+            if (i < namedImports.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append(" }");
+        return sb.toString();
+    }
+
+    public String generateJS() {
+        if (namedImports == null || namedImports.isEmpty()) {
+            return "{}";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("{ ");
+        for (int i = 0; i < namedImports.size(); i++) {
+            sb.append(namedImports.get(i).generateJS());
             if (i < namedImports.size() - 1) {
                 sb.append(", ");
             }

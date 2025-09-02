@@ -7,16 +7,12 @@ public class ParameterName {
         this.idDefiner = idDefiner;
     }
 
-    public String getIdDefiner() {
+    @Override
+    public String toString() {
         return idDefiner;
     }
 
-    public void setIdDefiner(String idDefiner) {
-        this.idDefiner = idDefiner;
-    }
-
-    @Override
-    public String toString() {
+    public String generateJS() {
         return idDefiner;
     }
 }

@@ -19,4 +19,9 @@ public class TsDecorator extends TsProgContent {
     public String toString() {
         return decorator.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return decorator.generateJS();
+    }
 }

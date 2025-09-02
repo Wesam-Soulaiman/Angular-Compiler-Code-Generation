@@ -21,4 +21,9 @@ public class IdDefinerImport extends NamedImport {
     public String toString() {
         return string;
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

@@ -19,4 +19,8 @@ public class RegularFunction extends FunctionDeclaration {
     public String toString() {
         return regularFunctionDeclaration.toString();
     }
+
+    public String generateJS() {
+        return regularFunctionDeclaration.generateJS();
+    }
 }

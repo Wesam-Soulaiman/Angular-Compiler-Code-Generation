@@ -6,4 +6,9 @@ public class ThisElement extends MemberAccessElement {
     public String toString() {
         return "this";
     }
+
+    @Override
+    public String generateJS() {
+        return "this";
+    }
 }

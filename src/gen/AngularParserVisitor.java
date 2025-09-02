@@ -91,6 +91,13 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNavTag(AngularParser.NavTagContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BodyTag}
+	 * labeled alternative in {@link AngularParser#tagName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBodyTag(AngularParser.BodyTagContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code SpanTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
 	 * @param ctx the parse tree
@@ -139,13 +146,6 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitImgTag(AngularParser.ImgTagContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Inputtag}
-	 * labeled alternative in {@link AngularParser#tagName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInputtag(AngularParser.InputtagContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code UlTag}
 	 * labeled alternative in {@link AngularParser#tagName}.
@@ -557,6 +557,13 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTsVariableDecl(AngularParser.TsVariableDeclContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code TsRouterDecl}
+	 * labeled alternative in {@link AngularParser#tsProgContent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTsRouterDecl(AngularParser.TsRouterDeclContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AngularParser#importStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -703,6 +710,56 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDecoratorProperty(AngularParser.DecoratorPropertyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routerDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouterDeclaration(AngularParser.RouterDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routerName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouterName(AngularParser.RouterNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routers}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouters(AngularParser.RoutersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routerArrayContent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouterArrayContent(AngularParser.RouterArrayContentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routerPropertyName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouterPropertyName(AngularParser.RouterPropertyNameContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code pathValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPathValue(AngularParser.PathValueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code componentValue}
+	 * labeled alternative in {@link AngularParser#routerPropertyValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComponentValue(AngularParser.ComponentValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AngularParser#routerProperty}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRouterProperty(AngularParser.RouterPropertyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AngularParser#classDeclaration}.
 	 * @param ctx the parse tree

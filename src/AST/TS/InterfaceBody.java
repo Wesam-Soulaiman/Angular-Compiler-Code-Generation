@@ -3,18 +3,9 @@ package AST.TS;
 import java.util.List;
 
 public class InterfaceBody {
-
     private List<InterfaceProperty> properties;
 
     public InterfaceBody(List<InterfaceProperty> properties) {
-        this.properties = properties;
-    }
-
-    public List<InterfaceProperty> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(List<InterfaceProperty> properties) {
         this.properties = properties;
     }
 
@@ -27,5 +18,10 @@ public class InterfaceBody {
         }
         sb.append("}");
         return sb.toString();
+    }
+
+    public String generateJS() {
+        // Interfaces are erased in JS
+        return "";
     }
 }

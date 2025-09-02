@@ -19,4 +19,10 @@ public class StringValues extends DecoratorPropertyValue {
     public String toString() {
         return value;
     }
+
+    @Override
+    public String generateJS() {
+        // Wrap string values in quotes for JS output
+        return "\"" + value + "\"";
+    }
 }

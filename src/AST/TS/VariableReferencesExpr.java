@@ -20,4 +20,8 @@ public class VariableReferencesExpr extends PrimaryExpr {
     public String toString() {
         return varRef.toString();
     }
+
+    public String generateJS() {
+        return varRef.generateJS();
+    }
 }

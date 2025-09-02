@@ -21,4 +21,14 @@ public class HtmlProgram extends Prog {
     public String toString() {
         return htmlProg.toString();
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
+
+//    @Override
+//    public String generateHTML() {
+//        return htmlProg.generateHTML();
+//    }
 }

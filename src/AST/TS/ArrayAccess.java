@@ -1,8 +1,8 @@
 package AST.TS;
 
 public class ArrayAccess {
-    private String arrayName;          // يعادل IDDEFINER
-    private Expression expression;     // ممكن تكون null إذا لم يكن هناك تعبير داخل []
+    private String arrayName;          // equivalent to IDDEFINER
+    private Expression expression;     // can be null if no expression inside []
 
     public ArrayAccess(String arrayName, Expression expression) {
         this.arrayName = arrayName;
@@ -28,5 +28,9 @@ public class ArrayAccess {
     @Override
     public String toString() {
         return arrayName + "[" + (expression != null ? expression.toString() : "") + "]";
+    }
+
+    public String generateJS() {
+        return arrayName + "[" + (expression != null ? expression.generateJS() : "") + "]";
     }
 }

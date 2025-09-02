@@ -7,16 +7,14 @@ public class TsFunction extends TsProgContent {
         this.functionDeclaration = functionDeclaration;
     }
 
-    public FunctionDeclaration getFunctionDeclaration() {
-        return functionDeclaration;
-    }
-
-    public void setFunctionDeclaration(FunctionDeclaration functionDeclaration) {
-        this.functionDeclaration = functionDeclaration;
-    }
-
     @Override
     public String toString() {
         return functionDeclaration.toString();
+    }
+
+    @Override
+    public String generateJS() {
+        // Delegate JS generation to the FunctionDeclaration
+        return functionDeclaration.generateJS();
     }
 }

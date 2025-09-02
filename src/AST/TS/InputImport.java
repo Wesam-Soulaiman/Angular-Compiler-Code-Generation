@@ -7,4 +7,9 @@ public class InputImport extends NamedImport {
     public String toString() {
         return "Input";
     }
+
+    @Override
+    public String generateJS() {
+        return "";
+    }
 }

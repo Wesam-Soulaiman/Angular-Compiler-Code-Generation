@@ -1,9 +1,9 @@
 package AST.TS;
 
-import gen.AngularParser;
-
 public abstract class FunctionDeclaration {
     @Override
     public abstract String toString();
-}
 
+    // Add abstract generateJS
+    public abstract String generateJS();
+}
