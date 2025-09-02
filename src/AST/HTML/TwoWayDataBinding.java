@@ -1,26 +1,18 @@
 package AST.HTML;
 
 public class TwoWayDataBinding {
-    private String modelName;
 
-    public TwoWayDataBinding(String modelName) {
-        this.modelName = modelName;
+        public TwoWayDataBinding() {
+
+        }
+
+        @Override
+        public String toString() {
+            return "[(" + "ngModel" + ")]";
+        }
+        public String generateJS() {
+            return "[(" + "ngModel" + ")]";
+        }
     }
 
-    public String getModelName() {
-        return modelName;
-    }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    @Override
-    public String toString() {
-        return "[(" + modelName + ")]";
-    }
-
-    public String generateHtml() {
-        return "[(" + modelName + ")]";
-    }
-}

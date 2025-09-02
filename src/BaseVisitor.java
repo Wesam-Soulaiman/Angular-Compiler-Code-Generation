@@ -1732,20 +1732,20 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
     public AttributeName visitAttributeName(AngularParser.AttributeNameContext ctx) {
         if (ctx.standardAttribute() != null) {
             StandardAttribute standardAttribute = (StandardAttribute) visit(ctx.standardAttribute());
-            return new AttributeName(standardAttribute);
+            return new AttributeName(standardAttribute,null,null,null,null);
         } else if (ctx.angularBinding() != null) {
             AngularBinding angularBinding = (AngularBinding) visit(ctx.angularBinding());
-            return new AttributeName(angularBinding);
+            return new AttributeName(null,angularBinding,null,null,null);
         } else if (ctx.angularEvent() != null) {
             AngularEvent angularEvent = (AngularEvent) visit(ctx.angularEvent());
-            return new AttributeName(angularEvent);
+            return new AttributeName(null,null,angularEvent,null,null);
         } else if (ctx.angularDirective() != null) {
             AngularDirective angularDirective = (AngularDirective) visit(ctx.angularDirective());
-            return new AttributeName(angularDirective);
+            return new AttributeName(null,null,null,angularDirective,null);
         }
         else if (ctx.twoWayDataBinding() != null) {       // الجديد
             TwoWayDataBinding twoWay = (TwoWayDataBinding) visit(ctx.twoWayDataBinding());
-            return new AttributeName(twoWay);
+            return new AttributeName(null,null,null,null,twoWay);
         }
         else {
             return null;
@@ -2021,7 +2021,6 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
     }
     private void writeErrorToFile(String errorMsg) {
         try {
-            // اسم الملف داخل مجلد المشروع
             FileWriter fw = new FileWriter("semantic_errors.txt", true); // true = append mode
             PrintWriter pw = new PrintWriter(fw);
             pw.println(errorMsg);
@@ -2060,9 +2059,154 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         if (ctx == null) {
             return null;
         }
-
         return new RoutesType();
     }
-}
+
+    @Override
+    public Object visitTwoWayDataBinding(AngularParser.TwoWayDataBindingContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        return new TwoWayDataBinding();
+    }
+
+    @Override
+    public EventName visitNgSubmitEvent(AngularParser.NgSubmitEventContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        return new SubmitEvent1();
+    }
+
+    @Override
+    public TsProg visitTsRouterDecl(AngularParser.TsRouterDeclContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        RouterDeclaration routerDeclaration = (RouterDeclaration) visit(ctx.routerDeclaration());
+
+        return  new TsRouterDecl(routerDeclaration);
+    }
+
+    @Override
+    public Object visitRouterDeclaration(AngularParser.RouterDeclarationContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+
+        boolean isExport = ctx.EXPORT() != null;
+
+        DeclarationTypes declarationTypes = (DeclarationTypes) visit(ctx.declarationTypes());
+        RouterName routerName = ctx.routerName() != null
+                ? new RouterName(ctx.routerName().getText())
+                : null;
+
+        TypeSelector typeSelector = ctx.typeSelector() != null
+                ? (TypeSelector) visit(ctx.typeSelector())
+                : null;
+
+        Routers routers = ctx.routers() != null
+                ? (Routers) visit(ctx.routers())
+                : null;
+
+        return new RouterDeclaration(isExport, declarationTypes, routerName, typeSelector, routers);
+    }
+
+    @Override
+    public Object visitRouterName(AngularParser.RouterNameContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        String name = ctx.IDDEFINER().getText();
+        return new RouterName(name);
+    }
+
+    @Override
+    public Object visitRouters(AngularParser.RoutersContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+
+        List<RouterArrayContent> routerArrayContent = new ArrayList<>();
+        for (AngularParser.RouterArrayContentContext ec : ctx.routerArrayContent()) {
+            routerArrayContent.add((RouterArrayContent) visit(ec));
+        }
+
+        return new Routers(routerArrayContent);
+    }
+
+    @Override
+    public Object visitRouterArrayContent(AngularParser.RouterArrayContentContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+
+        List<RouterProperty> properties = new ArrayList<>();
+
+        for (AngularParser.RouterPropertyContext propCtx : ctx.routerProperty()) {
+            RouterProperty prop = (RouterProperty) visit(propCtx);
+            properties.add(prop);
+        }
+
+        return new RouterArrayContent(properties);
+    }
+
+    @Override
+    public Object visitRouterPropertyName(AngularParser.RouterPropertyNameContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+
+        RouterPropertyName.Kind kind = null;
+
+        if (ctx.PATH() != null) {
+            kind = RouterPropertyName.Kind.PATH;
+        } else if (ctx.ROUTE_COMPONENT() != null) {
+            kind = RouterPropertyName.Kind.ROUTE_COMPONENT;
+        }
+
+        return new RouterPropertyName(kind);
+    }
+
+    @Override
+    public RouterPropertyValue visitPathValue(AngularParser.PathValueContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        String name = ctx.STRING().getText();
+        return new PathValue(name);
+    }
+
+    @Override
+    public Object visitComponentValue(AngularParser.ComponentValueContext ctx) {
+        if (ctx == null || ctx.IDDEFINER() == null) {
+            return null;
+        }
+
+        String name = ctx.IDDEFINER().getText();
+
+        return new ComponentValue(name);
+    }
+
+    @Override
+    public Object visitRouterProperty(AngularParser.RouterPropertyContext ctx) {
+
+            if (ctx == null) {
+                return null;
+            }
+
+            RouterPropertyName name = ctx.routerPropertyName() != null
+                    ? (RouterPropertyName) visit(ctx.routerPropertyName())
+                    : null;
+
+        RouterPropertyValue  value = ctx.routerPropertyValue() != null
+                    ?(RouterPropertyValue) visit(ctx.routerPropertyValue())
+                    : null;
+
+            return new RouterProperty(name, value);
+        }
+
+    }
+
 
 
