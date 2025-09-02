@@ -25,17 +25,13 @@ public class Statment {
         }
         return sb.toString();
     }
+
+    // Transpile to HTML
+    public String generateHTML() {
+        StringBuilder sb = new StringBuilder();
+        for (Text text : texts) {
+            sb.append(text.generateHTML());
+        }
+        return sb.toString();
+    }
 }
-
-
-//    @Override
-//    public ASTNode visitStatment(YourGrammarParser.StatmentContext ctx) {
-//        if (ctx == null) {
-//            return null;
-//        }
-//        List<Text> texts = ctx.text() == null ?
-//                new ArrayList<>() :
-//                ctx.test().stream()
-//                        .map(attr -> (Text) visitText(attr))
-//                        .collect(Collectors.toList());
-//        return new Statment(texts);}

@@ -14,6 +14,6 @@ public class HtmlOpenClose extends HtmlElement {
 
     @Override
     public String generateHTML() {
-        return openCloseTag.generateHtml();
+        return openCloseTag.generateHTML();
     }
 }

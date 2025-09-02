@@ -1,7 +1,7 @@
 package AST.HTML;
 
 public class AngularInterpolation {
-    private AngularInterpolationContent content; // ممكن يكون null (اختياري)
+    private AngularInterpolationContent content; // optional
 
     public AngularInterpolation(AngularInterpolationContent content) {
         this.content = content;
@@ -22,5 +22,10 @@ public class AngularInterpolation {
         } else {
             return "{{}}";
         }
+    }
+
+    public String generateHTML() {
+        // same as toString for template binding
+        return toString();
     }
 }

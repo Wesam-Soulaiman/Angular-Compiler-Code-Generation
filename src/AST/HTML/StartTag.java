@@ -41,7 +41,7 @@ public class StartTag {
         }
     }
 
-    public String generateHtml() {
+    public String generateHTML() {
         String attrs = attributes.stream()
                 .map(HtmlAttribute::generateHtml)
                 .collect(Collectors.joining(" "));

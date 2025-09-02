@@ -1,19 +1,14 @@
 package AST.HTML;
-import AST.TS.Expression;
 
+import AST.TS.Expression;
 import java.util.List;
 
-public class
-AngularInterpolationContent {
-
-
+public class AngularInterpolationContent {
     private List<Expression> pipeExpressions;
 
-    public AngularInterpolationContent( List<Expression> pipeExpressions) {
-
+    public AngularInterpolationContent(List<Expression> pipeExpressions) {
         this.pipeExpressions = pipeExpressions;
     }
-
 
     public List<Expression> getPipeExpressions() {
         return pipeExpressions;
@@ -33,5 +28,10 @@ AngularInterpolationContent {
             sb.append(pipeExpressions.get(i));
         }
         return sb.toString();
+    }
+
+    public String generateHTML() {
+        // just delegate to toString, same as AngularInterpolation
+        return toString();
     }
 }

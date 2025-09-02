@@ -22,10 +22,11 @@ public class OpenCloseTag {
         return startTag.toString() + contentStr + endTag.toString();
     }
 
-    public String generateHtml() {
+    public String generateHTML() {  // fix method name
         String contentStr = contents.stream()
-                .map(ElementContent::generateHtml)
+                .map(ElementContent::generateHTML) // ✅ use generateHTML
                 .collect(Collectors.joining());
-        return startTag.generateHtml() + contentStr + endTag.generateHtml();
+        return startTag.generateHTML() + contentStr + endTag.generateHTML();
     }
+
 }

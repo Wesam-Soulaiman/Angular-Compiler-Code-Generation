@@ -12,4 +12,10 @@ public class HtmlNestedElement extends ElementContent {
     public String toString() {
         return "\n" + "   " + htmlelement.toString();
     }
+
+    @Override
+    public String generateHTML() {
+        // delegate to the nested element
+        return htmlelement.generateHTML();
+    }
 }

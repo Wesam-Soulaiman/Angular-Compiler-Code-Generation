@@ -19,11 +19,9 @@ public class Text {
     public String toString() {
         return idDefiner;
     }
+
+    // Transpile to HTML
+    public String generateHTML() {
+        return idDefiner; // raw text is just output as-is
+    }
 }
-//
-//@Override
-//public ASTNode visitText(YourGrammarParser.TextContext ctx) {
-//    if (ctx == null) return null;
-//    String idDefiner = ctx.IDDEFINER().getText();
-//    return new Text(idDefiner);
-//}

@@ -20,7 +20,7 @@ public class EndTag {
         return "</" + tagName.toString() + ">";
     }
 
-    public String generateHtml() {
+    public String generateHTML() {
         return "</" + tagName.toString() + ">";
     }
 }
