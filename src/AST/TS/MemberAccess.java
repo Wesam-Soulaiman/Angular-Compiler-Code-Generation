@@ -2,11 +2,19 @@ package AST.TS;
 
 public class MemberAccess {
     private MemberAccessElement left;
-    private String memberName;
+    private String memberName;          // للحالة الأولى: IDDEFINER
+    private FunctionCall functionCall;  // للحالة الثانية: functionCall
 
+    // constructor للحالة الأولى
     public MemberAccess(MemberAccessElement left, String memberName) {
         this.left = left;
         this.memberName = memberName;
+    }
+
+    // constructor للحالة الثانية
+    public MemberAccess(MemberAccessElement left, FunctionCall functionCall) {
+        this.left = left;
+        this.functionCall = functionCall;
     }
 
     public MemberAccessElement getLeft() {
@@ -25,12 +33,30 @@ public class MemberAccess {
         this.memberName = memberName;
     }
 
+    public FunctionCall getFunctionCall() {
+        return functionCall;
+    }
+
+    public void setFunctionCall(FunctionCall functionCall) {
+        this.functionCall = functionCall;
+    }
+
     @Override
     public String toString() {
-        return left.toString() + "." + memberName;
+        if (memberName != null) {
+            return left.toString() + "." + memberName;
+        } else if (functionCall != null) {
+            return left.toString() + "." + functionCall.toString();
+        }
+        return left.toString(); // fallback
     }
 
     public String generateJS() {
-        return left.generateJS() + "." + memberName;
+        if (memberName != null) {
+            return left.generateJS() + "." + memberName;
+        } else if (functionCall != null) {
+            return left.generateJS() + "." + functionCall.generateJS();
+        }
+        return left.generateJS(); // fallback
     }
 }

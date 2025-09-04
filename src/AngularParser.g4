@@ -385,7 +385,7 @@ objectContent: objectProperty (COMMA objectProperty)* COMMA?;
 /////////7
 objectProperty
     : objectPropertyName COLON expression
-    | extractData //////////// new
+    | extractData //////////// new////
     ;
 //
 objectPropertyName: IDDEFINER;
@@ -421,17 +421,17 @@ variableReferences
 
 memberAccess
     : memberAccessElement DOT IDDEFINER
-    | memberAccessElement DOT functionCall SEMI? //////////// new
+    | memberAccessElement DOT functionCall SEMI? //////////// new////
     ;
 
 
-extractData : DOT DOT DOT memberAccess ; ///////////new
+extractData : DOT DOT DOT memberAccess ; ///////////new////
 
 
 memberAccessElement
     : IDDEFINER # IdDefinerLabel
     | THIS      # ThisLabel
-    |  LOCALSTORAGE #LocalLabel ////////// new
+    |  LOCALSTORAGE #LocalLabel ////////// new//
     ;
 
 

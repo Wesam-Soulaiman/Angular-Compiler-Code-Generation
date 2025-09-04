@@ -608,11 +608,22 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         if (ctx == null) {
             return null;
         }
-        MemberAccessElement target = (MemberAccessElement) visit(ctx.memberAccessElement());
-        String  property = ctx.IDDEFINER().getText();
 
-        return new MemberAccess(target, property);
+        MemberAccessElement target = (MemberAccessElement) visit(ctx.memberAccessElement());
+
+        if (ctx.IDDEFINER() != null) {
+            String property = ctx.IDDEFINER().getText();
+            return new MemberAccess(target, property);
+        }
+
+        if (ctx.functionCall() != null) {
+            FunctionCall functionCall = (FunctionCall) visit(ctx.functionCall());
+            return new MemberAccess(target, functionCall);
+        }
+
+        return null;
     }
+
 
 
     @Override
@@ -759,17 +770,25 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
     public ObjectProperty visitObjectProperty(AngularParser.ObjectPropertyContext ctx) {
         if (ctx == null) return null;
 
-        ObjectPropertyName objectPropertyName = (ObjectPropertyName) visit(ctx.objectPropertyName());
-        Expression expression = (Expression) visit(ctx.expression());
+        if (ctx.objectPropertyName() != null && ctx.expression() != null) {
+            ObjectPropertyName objectPropertyName = (ObjectPropertyName) visit(ctx.objectPropertyName());
+            Expression expression = (Expression) visit(ctx.expression());
 
-        String variableName = objectPropertyName.toString();
-        ObjectPropertySymbolTable propTable = new ObjectPropertySymbolTable("semantic_errors.txt");
+            String variableName = objectPropertyName.toString();
+            ObjectPropertySymbolTable propTable = new ObjectPropertySymbolTable("semantic_errors.txt");
 
-        propTable.checkPropertyExists(variableName, ctx.getStart().getLine());
+            propTable.checkPropertyExists(variableName, ctx.getStart().getLine());
+            propTable.put(variableName, expression);
 
-        propTable.put(variableName, expression);
+            return new ObjectProperty(objectPropertyName, expression);
+        }
 
-        return new ObjectProperty(objectPropertyName, expression);
+        if (ctx.extractData() != null) {
+            ExtractData extractData = (ExtractData) visit(ctx.extractData());
+            return new ObjectProperty(extractData);
+        }
+
+        return null;
     }
 
 
@@ -1328,16 +1347,14 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
 
     @Override
     public Object visitClassDeclaration(AngularParser.ClassDeclarationContext ctx) {
-        ClassName Name = (ClassName) visit(ctx.className());
+        ClassName Name = (ClassName) visit(ctx.className(0));
         String name = Name.toString();
 
         SymbolTable symbolTable = SymbolTable.getInstance();
 
         if (symbolTable.isVarExistInCurrentScope(name)) {
             String error = "Semantic Error: The class '" + name + "' is already defined in this scope. (Line: " + ctx.start.getLine() + ")";
-
             writeErrorToFile(error);
-
             System.err.println(error);
         } else {
             Symbol classSymbol = new Symbol("class");
@@ -1347,6 +1364,7 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         ClassBody body = (ClassBody) visit(ctx.classBody());
         return new ClassDeclaration(Name, body);
     }
+
 
     @Override
     public Object visitDecoratorProperty(AngularParser.DecoratorPropertyContext ctx) {
@@ -2201,7 +2219,21 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
             return new RouterProperty(name, value);
         }
 
+    @Override
+    public Object visitExtractData(AngularParser.ExtractDataContext ctx) {
+        if (ctx == null) {
+            return null;
+        }
+        MemberAccess memberAccess = (MemberAccess) visit(ctx.memberAccess());
+
+        return new ExtractData(memberAccess);
     }
+    @Override
+    public MemberAccessElement visitLocalLabel(AngularParser.LocalLabelContext ctx) {
+        return new LocalLabel();
+    }
+
+}
 
 
 
