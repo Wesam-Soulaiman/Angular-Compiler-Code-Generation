@@ -8,4 +8,7 @@ public abstract class ClassMember extends TsProgContent{
     public String generateJS() {
         return toString();
     }
+    public String generateHTML() {
+        return "";
+    }
 }

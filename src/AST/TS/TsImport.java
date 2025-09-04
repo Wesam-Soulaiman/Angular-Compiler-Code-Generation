@@ -24,4 +24,9 @@ public class TsImport extends TsProgContent {
     public String generateJS() {
         return "";
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

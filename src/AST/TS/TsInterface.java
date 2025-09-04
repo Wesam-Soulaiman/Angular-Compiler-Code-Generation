@@ -17,4 +17,9 @@ public class TsInterface extends TsProgContent {
         // Interfaces are erased in JS, so return empty string
         return "";
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

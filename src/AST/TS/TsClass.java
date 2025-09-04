@@ -24,4 +24,9 @@ public class TsClass extends TsProgContent {
     public String generateJS() {
         return classDeclaration.generateJS();
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

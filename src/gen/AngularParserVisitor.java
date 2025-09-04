@@ -1166,6 +1166,12 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMemberAccess(AngularParser.MemberAccessContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link AngularParser#extractData}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExtractData(AngularParser.ExtractDataContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code IdDefinerLabel}
 	 * labeled alternative in {@link AngularParser#memberAccessElement}.
 	 * @param ctx the parse tree

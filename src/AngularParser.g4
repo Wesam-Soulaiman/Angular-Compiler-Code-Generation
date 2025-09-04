@@ -39,8 +39,8 @@ prog
 
     tagName
         : DIV      #DivTag
-        | NAV      #NavTag ////////// new
-        | BODY      #BodyTag ////////// new
+        | NAV      #NavTag
+        | BODY      #BodyTag
         | SPAN     #SpanTag
         | P        #PTag
         | A        #ATag
@@ -86,7 +86,7 @@ prog
             | angularBinding
             | angularEvent
             | angularDirective
-            | twoWayDataBinding ////new
+            | twoWayDataBinding
             ;
 
     standardAttribute
@@ -98,8 +98,8 @@ prog
         | SRC       #SrcAttr
         | DISABLED  #DisabledAttr
         | TYPE      #TypeAttr
-        | ROUTER_LINK #LinkAttr ///// new
-        | ROUTER_LINK_Active #LinkActiveAttr ///// new
+        | ROUTER_LINK #LinkAttr
+        | ROUTER_LINK_Active #LinkActiveAttr
         | NAME      #NameAttr
         | IDDEFINER  #IdDefinerAttr
         ;
@@ -110,7 +110,7 @@ prog
         : LBRACK bindingName RBRACK
         ;
 
-    twoWayDataBinding ///new
+    twoWayDataBinding
         : LBRACK LPAREN NGMODEL RPAREN RBRACK
     ;
     bindingName
@@ -127,7 +127,7 @@ prog
 
     eventName
         : CLICK      #ClickEvent
-        | NG_SUBMIT      #NgSubmitEvent //////////// new
+        | NG_SUBMIT      #NgSubmitEvent
         | CHANGE     #ChangeEvent
         | INPUT      #InputEvent
         | SUBMIT     #SubmitEvent
@@ -167,7 +167,7 @@ tsProgContent:
     | interfaceDeclaration #TsInterface
     | decorator            #TsDecorator
     | variableDeclarations #TsVariableDecl
-    | routerDeclaration    #TsRouterDecl //// new
+    | routerDeclaration    #TsRouterDecl
 ;
 
 importStatement
@@ -189,7 +189,7 @@ namedImport
     : COMPONENT     #ComponentImport
     | INJECTABLE    #InjectableImport
     | INPUT         #InputImport
-    | ROUTES         #InputRoutes ////////// new
+    | ROUTES         #InputRoutes
     | IDDEFINER     #IdDefinerImport
     ;
 
@@ -222,7 +222,7 @@ decoratorProperty
     : decoratorPropertyName COLON decoratorPropertyValue
     ;
 
-/////// new
+
 routerDeclaration
     : EXPORT? declarationTypes routerName typeSelector? ASSIGN routers SEMI? ;
 
@@ -249,7 +249,7 @@ routerProperty
     ;
 /////2
 classDeclaration
-    : EXPORT? CLASS className classBody
+    : EXPORT? CLASS className IMPLEMENTS? className? classBody
     ;
 //
 className: IDDEFINER;
@@ -352,7 +352,7 @@ variableDeclarations
 ////6
 /////////// export
 variableDeclaration
-    : EXPORT? declarationTypes? variableName typeSelector? (ASSIGN variableValue)? SEMI? ; //////////// EXPORT? new
+    : EXPORT? declarationTypes? variableName typeSelector? (ASSIGN variableValue)? SEMI? ;
 /////1
 decoratorBasedInput
     : DECORATOR INPUT LPAREN RPAREN variableName DEFINITE_ASSIGN typeSelector SEMI?;
@@ -385,6 +385,7 @@ objectContent: objectProperty (COMMA objectProperty)* COMMA?;
 /////////7
 objectProperty
     : objectPropertyName COLON expression
+    | extractData //////////// new
     ;
 //
 objectPropertyName: IDDEFINER;
@@ -420,10 +421,17 @@ variableReferences
 
 memberAccess
     : memberAccessElement DOT IDDEFINER
+    | memberAccessElement DOT functionCall SEMI? //////////// new
     ;
+
+
+extractData : DOT DOT DOT memberAccess ; ///////////new
+
+
 memberAccessElement
     : IDDEFINER # IdDefinerLabel
     | THIS      # ThisLabel
+    |  LOCALSTORAGE #LocalLabel ////////// new
     ;
 
 
@@ -467,7 +475,7 @@ baseType
     | BOOLEAN_TYPE    #BooleanType
     | ANY_TYPE        #AnyType
     | VOID_TYPE        #VoidType
-    | ROUTES      #RoutesType /////////// new
+    | ROUTES      #RoutesType
     | IDDEFINER       #IdDefinerType
     ;
 

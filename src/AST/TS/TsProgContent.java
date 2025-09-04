@@ -5,4 +5,5 @@ public abstract class TsProgContent extends TsNode {
     public abstract String toString();
 
     public abstract String generateJS();
+    public abstract String generateHTML();
 }

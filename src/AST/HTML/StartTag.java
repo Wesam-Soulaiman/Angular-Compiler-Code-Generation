@@ -16,40 +16,49 @@ public class StartTag {
         return tagName;
     }
 
-    public void setTagName(TagName tagName) {
-        this.tagName = tagName;
-    }
-
     public List<HtmlAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<HtmlAttribute> attributes) {
-        this.attributes = attributes;
-    }
-
-    @Override
+    // ---------------- NORMAL HTML ----------------
     public String toString() {
         String attrs = attributes.stream()
+                .filter(attr -> !attr.isAngularDirective())
                 .map(HtmlAttribute::toString)
                 .collect(Collectors.joining(" "));
 
-        if (!attrs.isEmpty()) {
-            return "<" + tagName.toString() + " " + attrs + ">" + "\n";
-        } else {
-            return "<" + tagName.toString() + ">" + "\n";
-        }
+        return attrs.isEmpty()
+                ? "<" + tagName.toString() + ">\n"
+                : "<" + tagName.toString() + " " + attrs + ">\n";
     }
 
     public String generateHTML() {
         String attrs = attributes.stream()
-                .map(HtmlAttribute::generateHtml)
+                .filter(attr -> !attr.isAngularDirective())
+                .map(HtmlAttribute::generateHTML)
                 .collect(Collectors.joining(" "));
 
-        if (!attrs.isEmpty()) {
-            return "<" + tagName.generateHtml() + " " + attrs + ">" + "\n";
-        } else {
-            return "<" + tagName.generateHtml() + ">" + "\n";
+        return attrs.isEmpty()
+                ? "<" + tagName.generateHTML() + ">\n"
+                : "<" + tagName.generateHTML() + " " + attrs + ">\n";
+    }
+
+    // ---------------- ANGULAR DIRECTIVES ----------------
+    public String generateDirectivePrefix() {
+        for (HtmlAttribute attr : attributes) {
+            if (attr.isAngularDirective()) {
+                return attr.generateDirectivePrefix();
+            }
         }
+        return "";
+    }
+
+    public String generateDirectiveSuffix() {
+        for (HtmlAttribute attr : attributes) {
+            if (attr.isAngularDirective()) {
+                return attr.generateDirectiveSuffix();
+            }
+        }
+        return "";
     }
 }

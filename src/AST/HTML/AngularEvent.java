@@ -20,7 +20,14 @@ public class AngularEvent {
         return "(" + event.toString() + ")";
     }
 
-    public String generateHtml() {
-        return "(" + event.generateHtml() + ")";
+    // Translate (click) → onclick
+    public String generateHTML() {
+        if ("click".equals(event.toString())) {
+            return "onclick";
+        }
+        if ("ngSubmit".equals(event.toString())) {
+            return "id";
+        }
+        return "on" + event.generateHTML();
     }
 }

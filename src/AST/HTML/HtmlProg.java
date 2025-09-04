@@ -27,7 +27,7 @@ public class HtmlProg {
 
     public String generateHTML() {
         return nodes.stream()
-                .map(HtmlNode::generateHTML) // call generateHTML on each HTML AST node
+                .map(HtmlNode::generateHTML)
                 .collect(Collectors.joining("\n"));
     }
 }

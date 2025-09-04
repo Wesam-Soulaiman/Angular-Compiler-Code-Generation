@@ -1,18 +1,13 @@
-<div style="display: flex; margin-left: 20px;">
-  <div style="flex: 5;">
-    <h1>List</h1>
-    <div
-      *ngFor="let product of products"
-      (click)="selectProduct(product)"
-      style="border: 1.5px solid black; text-align: center; margin-top: 2px;"
-    >
-      <h3>{{ product.name }}</h3>
-      <img [src]="product.image" alt="product img" />
-    </div>
-  </div>
-  <div style="flex: 7;">
-    <app-product-details *ngIf="selectedProduct" [product]="selectedProduct">
-    </app-product-details>
-    <body></body>
-  </div>
-</div>
+<h2>Add New Product</h2>
+<form (ngSubmit)="addProduct()">
+  <label>Name</label>
+  <input [(ngModel)]="product.name" name="name" />
+
+  <label>Description</label>
+  <textarea [(ngModel)]="product.description" name="description"></textarea>
+
+  <label>Image URL</label>
+  <input [(ngModel)]="product.image" name="image" />
+
+  <button type="submit">Add Product</button>
+</form>

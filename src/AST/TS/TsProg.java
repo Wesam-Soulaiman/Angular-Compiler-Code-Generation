@@ -33,4 +33,11 @@ public class TsProg {
                 .map(TsNode::generateJS)
                 .collect(Collectors.joining("\n"));
     }
+
+    public String generateHTML() {
+        return statements.stream()
+                .filter(Objects::nonNull) // skip nulls
+                .map(TsNode::generateHTML)
+                .collect(Collectors.joining("\n"));
+    }
 }

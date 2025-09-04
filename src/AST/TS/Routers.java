@@ -3,8 +3,6 @@ package AST.TS;
 import java.util.List;
 
 public class Routers {
-
-
         private List<RouterArrayContent> contents;
 
         public Routers(List<RouterArrayContent> contents) {

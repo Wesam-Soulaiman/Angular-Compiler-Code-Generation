@@ -16,7 +16,7 @@ public abstract class TagName {
         return name;
     }
 
-    public String generateHtml() {
+    public String generateHTML() {
         return name;
     }
 }

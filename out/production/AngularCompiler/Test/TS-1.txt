@@ -1,5 +1,7 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface Product {
   id: number;
@@ -9,11 +11,25 @@ export interface Product {
 }
 
 @Component({
-  selector: 'app-product-details',
-  imports: [CommonModule],
-  templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css',
+  selector: 'app-add-product',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.css'],
 })
-export class ProductDetailsComponent {
-  @Input() product!: Product;
+export class AddProductComponent {
+  product: Product = {
+    id: Date.now(),
+    name: '',
+    description: '',
+    image: '',
+  };
+
+  addProduct() {
+    const storedProducts = localStorage.getItem('products');
+    const products: Product[] = JSON.parse(storedProducts)
+
+    products.push({ ...this.product, id: Date.now() });
+
+    localStorage.setItem('products', JSON.stringify(products));
+  }
 }

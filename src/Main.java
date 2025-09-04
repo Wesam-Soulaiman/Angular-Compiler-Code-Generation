@@ -27,20 +27,23 @@ public class Main {
 public static void main(String[] args) throws IOException {
         String routesSource = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\ROUTES-1.txt";
 
-        String htmlSource = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";
+        String htmlSource1 = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";
+        String htmlSource2 = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-2.txt";
 
         String cssSource  = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\CSS-1.txt";
         String tsxSource  = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\TS-2.txt";
 
         TsProgram routesProg = parseTsx(routesSource);
-        HtmlProgram htmlProg = parseHtml(htmlSource);
+        HtmlProgram htmlProg1 = parseHtml(htmlSource1);
+        HtmlProgram htmlProg2 = parseHtml(htmlSource2);
+
         CssProgram cssProg   = parseCss(cssSource);
         TsProgram tsProg     = parseTsx(tsxSource);
 
         CodeGenerator generator = new CodeGenerator();
 
 
-        generator.generate(htmlProg,routesProg, cssProg, tsProg);
+        generator.generate(htmlProg1, htmlProg2,routesProg, cssProg, tsProg);
 
         String source = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";
 

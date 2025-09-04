@@ -12,7 +12,8 @@ public class AngularBinding {
         return "[" + bindingName.toString() + "]";
     }
 
-    public String generateHtml() {
-        return "[" + bindingName.generateHtml() + "]";
+    // Generate src="${value}" style
+    public String generateHTML() {
+        return bindingName.generateHTML();
     }
 }

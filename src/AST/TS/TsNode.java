@@ -5,4 +5,7 @@ public abstract class TsNode {
     public abstract String toString();
 
     public abstract String generateJS();
+
+    public abstract String generateHTML();
+
 }

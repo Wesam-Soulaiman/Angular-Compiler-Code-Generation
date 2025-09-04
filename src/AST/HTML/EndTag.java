@@ -7,20 +7,12 @@ public class EndTag {
         this.tagName = tagName;
     }
 
-    public TagName getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(TagName tagName) {
-        this.tagName = tagName;
-    }
-
     @Override
     public String toString() {
         return "</" + tagName.toString() + ">";
     }
 
     public String generateHTML() {
-        return "</" + tagName.toString() + ">";
+        return "\n</" + tagName.generateHTML() + ">\n";
     }
 }

@@ -25,4 +25,9 @@ public class TsVariableDecl extends TsProgContent {
     public String generateJS() {
         return variableDeclarations.generateJS();
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

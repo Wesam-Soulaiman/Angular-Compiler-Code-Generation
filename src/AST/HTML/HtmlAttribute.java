@@ -9,28 +9,55 @@ public class HtmlAttribute {
         this.attributeValue = attributeValue;
     }
 
-    public AttributeName getAttributeName() {
-        return attributeName;
-    }
-
-    public void setAttributeName(AttributeName attributeName) {
-        this.attributeName = attributeName;
-    }
-
-    public AttributeValue getAttributeValue() {
-        return attributeValue;
-    }
-
-    public void setAttributeValue(AttributeValue attributeValue) {
-        this.attributeValue = attributeValue;
+    public boolean isAngularDirective() {
+        return attributeName.isAngularDirective();
     }
 
     @Override
     public String toString() {
-        return attributeName.toString() + " = " + attributeValue.toString();
+        if (isAngularDirective()) return "";
+        return attributeName.toString() + "=" + attributeValue.toString();
     }
 
-    public String generateHtml() {
-        return attributeName.generateHtml() + " = " + attributeValue.generateHtml();
+    public String generateHTML() {
+        if (isAngularDirective()) return "";
+
+        // Handle Angular binding ([src])
+        if (attributeName.angularBinding != null) {
+            return attributeName.generateHTML() + "=\"${" + attributeValue.getName().replace("\"","") + "}\"";
+        }
+
+        if (attributeName.twoWayDataBinding != null) {
+            return "";
+        }
+
+        // Handle Angular event (click)
+        if (attributeName.angularEvent != null) {
+            if ("click".equals(attributeName.angularEvent.getEvent().toString())) {
+                // Replace (product) with ${product.id} dynamically
+                String expr = attributeValue.getName(); // e.g., "selectProduct(product)"
+                expr = expr.replaceAll("\\((\\w+)\\)", "(\\${$1.id})");
+                return "onclick=" + expr ;
+            }
+            if ("ngSubmit".equals(attributeName.angularEvent.getEvent().toString())) {
+                // Replace (product) with ${product.id} dynamically
+                String expr = attributeValue.getName(); // e.g., "selectProduct(product)"
+                expr = expr.replace("()", "");
+                return "id=" + expr ;
+            }
+            return attributeName.angularEvent.generateHTML() + "=" + attributeValue.getName();
+        }
+
+        // Normal attribute
+        return attributeName.generateHTML() + "=" + attributeValue.generateHTML();
+    }
+
+    // Delegate directive translation
+    public String generateDirectivePrefix() {
+        return attributeName.generateDirectivePrefix(attributeValue);
+    }
+
+    public String generateDirectiveSuffix() {
+        return attributeName.generateDirectiveSuffix();
     }
 }

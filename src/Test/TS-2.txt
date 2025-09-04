@@ -1,40 +1,48 @@
-import { Component } from '@angular/core';
-import {
-  Product,
-  ProductDetailsComponent} from '../product-details/product-details.component';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+}
+JSON.parse(storedProducts)
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-product',
+  imports: [CommonModule],
   templateUrl: './product-list.component.html',
-  imports: [CommonModule, ProductDetailsComponent],
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
-  selectedProduct: any = null;
+export class ProductListComponent implements OnInit {
+  selectedProduct: Product = null;
+  products: Product[] = [];
 
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'camera',
-      description: 'Camera Description',
-      image: 'https://via.placeholder.com/150',
-    },
-    {
-      id: 2,
-      name: 'laptop',
-      description: 'Laptop Description',
-      image: 'https://via.placeholder.com/150',
-    },
-    {
-      id: 3,
-      name: 'shampoo',
-      description: 'Shampoo Description',
-      image: 'https://via.placeholder.com/150',
-    },
-  ];
+  ngOnInit() {
+    const storedProducts = localStorage.getItem('products');
+    this.products =  [
+          {
+            id: 1,
+            name: 'camera',
+            description: 'Camera Description',
+            image: 'https://via.placeholder.com/150',
+          },
+          {
+            id: 2,
+            name: 'laptop',
+            description: 'Laptop Description',
+            image: 'https://via.placeholder.com/150',
+          },
+          {
+            id: 3,
+            name: 'shampoo',
+            description: 'Shampoo Description',
+            image: 'https://via.placeholder.com/150',
+          },
+        ];
+  }
 
-  selectProduct(product: Product): void {
+  selectProduct(product: Product) {
     this.selectedProduct = product;
   }
 }

@@ -22,11 +22,27 @@ public class OpenCloseTag {
         return startTag.toString() + contentStr + endTag.toString();
     }
 
-    public String generateHTML() {  // fix method name
-        String contentStr = contents.stream()
-                .map(ElementContent::generateHTML) // ✅ use generateHTML
-                .collect(Collectors.joining());
-        return startTag.generateHTML() + contentStr + endTag.generateHTML();
-    }
+    public String generateHTML() {
+        StringBuilder sb = new StringBuilder();
 
+        // prepend directive opening (if ngFor or ngIf)
+        sb.append(startTag.generateDirectivePrefix());
+
+        // normal start tag
+        sb.append(startTag.generateHTML());
+
+        // inner content
+        String contentStr = contents.stream()
+                .map(ElementContent::generateHTML)
+                .collect(Collectors.joining());
+        sb.append(contentStr);
+
+        // end tag
+        sb.append(endTag.generateHTML());
+
+        // append directive closing
+        sb.append(startTag.generateDirectiveSuffix());
+
+        return sb.toString();
+    }
 }

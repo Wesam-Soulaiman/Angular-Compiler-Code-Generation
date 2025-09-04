@@ -11,7 +11,8 @@ ARROW             : '=>';
 INTERFACE         : 'interface';
 FUNCTION          : 'function' ;
 CLASS             : 'class';
-ROUTES            : 'Routes'; ////////////// new
+IMPLEMENTS                 :'implements'; ////////// NEW
+ROUTES            : 'Routes';
 SELECTOR          : 'selector';
 TEMPLATE_URL      : 'templateUrl';
 IMPORTS           : 'imports';
@@ -51,7 +52,7 @@ CSS_UNIT          : ('px' | 'em' | 'rem' | '%' | 'vh' | 'vw');
 
 DIV       : 'div';
 BODY      : 'body';
-NAV       : 'nav'; ///// new
+NAV       : 'nav';
 SPAN      : 'span';
 P         : 'p';
 A         : 'a';
@@ -90,8 +91,8 @@ HREF        : 'href';
 SRC         : 'src';
 DISABLED    : 'disabled';
 TYPE        : 'type';
-ROUTER_LINK: 'routerLink'; //////////// new
-ROUTER_LINK_Active :'routerLinkActive'; //////// new
+ROUTER_LINK: 'routerLink';
+ROUTER_LINK_Active :'routerLinkActive';
 
 VALUE       : 'value';
 CHECKED     : 'checked';

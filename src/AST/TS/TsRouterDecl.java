@@ -1,13 +1,15 @@
 package AST.TS;
 
 import java.util.Collections;
-public class TsRouterDecl extends TsProg{
+
+// TS Router Declaration as a TsProgContent
+public class TsRouterDecl extends TsProgContent {
     private RouterDeclaration contents;
 
     public TsRouterDecl(RouterDeclaration contents) {
-        super(Collections.emptyList());
         this.contents = contents;
     }
+
     public RouterDeclaration getContents() {
         return contents;
     }
@@ -18,10 +20,15 @@ public class TsRouterDecl extends TsProg{
 
     @Override
     public String toString() {
-        return  contents.toString();
+        return contents.toString();
     }
+
     @Override
     public String generateJS() {
         return contents.generateJS();
     }
+    public String generateHTML() {
+        return contents.generateHTML();
+    }
+
 }

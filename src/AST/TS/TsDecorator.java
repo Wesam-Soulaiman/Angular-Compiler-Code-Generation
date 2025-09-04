@@ -24,4 +24,9 @@ public class TsDecorator extends TsProgContent {
     public String generateJS() {
         return decorator.generateJS();
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

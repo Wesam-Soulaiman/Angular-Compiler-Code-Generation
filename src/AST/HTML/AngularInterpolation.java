@@ -25,7 +25,10 @@ public class AngularInterpolation {
     }
 
     public String generateHTML() {
-        // same as toString for template binding
-        return toString();
+        if (content != null) {
+            return "${" + content.toString() + "}";
+        } else {
+            return "";
+        }
     }
 }

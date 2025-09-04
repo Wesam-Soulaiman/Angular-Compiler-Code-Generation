@@ -15,7 +15,6 @@ public class HtmlInterpolation extends ElementContent {
 
     @Override
     public String generateHTML() {
-        // For Angular interpolation, we just return the template {{ ... }}
-        return angularInterpolation.toString();
+        return angularInterpolation.generateHTML();
     }
 }

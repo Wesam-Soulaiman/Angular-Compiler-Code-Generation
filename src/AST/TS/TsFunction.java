@@ -17,4 +17,9 @@ public class TsFunction extends TsProgContent {
         // Delegate JS generation to the FunctionDeclaration
         return functionDeclaration.generateJS();
     }
+
+    @Override
+    public String generateHTML() {
+        return "";
+    }
 }

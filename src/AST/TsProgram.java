@@ -31,6 +31,6 @@ public class TsProgram extends Prog {
 
     @Override
     public String generateHTML() {
-        return "";
+        return tsProg.generateHTML();
     }
 }

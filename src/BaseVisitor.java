@@ -15,10 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Object;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BaseVisitor extends AngularParserBaseVisitor<Object> {
 
@@ -2078,15 +2075,13 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
         return new SubmitEvent1();
     }
 
-    @Override
-    public TsProg visitTsRouterDecl(AngularParser.TsRouterDeclContext ctx) {
-        if (ctx == null) {
-            return null;
-        }
-        RouterDeclaration routerDeclaration = (RouterDeclaration) visit(ctx.routerDeclaration());
 
-        return  new TsRouterDecl(routerDeclaration);
+    @Override
+    public Object visitTsRouterDecl(AngularParser.TsRouterDeclContext ctx) {
+        RouterDeclaration routerDeclaration = (RouterDeclaration) visit(ctx.routerDeclaration());
+        return new TsRouterDecl(routerDeclaration);
     }
+
 
     @Override
     public Object visitRouterDeclaration(AngularParser.RouterDeclarationContext ctx) {
