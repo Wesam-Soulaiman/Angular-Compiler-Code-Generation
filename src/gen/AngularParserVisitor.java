@@ -1186,6 +1186,13 @@ public interface AngularParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitThisLabel(AngularParser.ThisLabelContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code LocalLabel}
+	 * labeled alternative in {@link AngularParser#memberAccessElement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLocalLabel(AngularParser.LocalLabelContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AngularParser#arrayAccess}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -2004,6 +2004,18 @@ public interface AngularParserListener extends ParseTreeListener {
 	 */
 	void exitThisLabel(AngularParser.ThisLabelContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code LocalLabel}
+	 * labeled alternative in {@link AngularParser#memberAccessElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLocalLabel(AngularParser.LocalLabelContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LocalLabel}
+	 * labeled alternative in {@link AngularParser#memberAccessElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLocalLabel(AngularParser.LocalLabelContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AngularParser#arrayAccess}.
 	 * @param ctx the parse tree
 	 */

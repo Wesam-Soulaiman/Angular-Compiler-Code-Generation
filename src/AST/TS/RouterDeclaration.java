@@ -77,7 +77,7 @@ public class RouterDeclaration {
 
         sb.append("\tfunction ");
         sb.append(routerName != null ? routerName.generateJS() : "").append("() { \n");
-        sb.append("\t  const route = window.location.hash || \"#/\";\n");
+        sb.append("\t  const route = window.location.hash.replace(\"#\", \"\") || \"/\";\n");
         sb.append("\t  document.querySelectorAll(\"nav a\").forEach(a => a.classList.remove(\"active\"));\n");
 
         for (RouterArrayContent content : routers.getContents()) {
@@ -129,9 +129,9 @@ public class RouterDeclaration {
                     componentCall = prop.getValue().generateJS();
                 }
             }
-            if (path.equals("\"\"")) path = "/";
-            else path = "/" + path.replace("'", "").replace("\"", "");
-            sb.append("\t\t<a href=\"").append(path).append("\" id=\"").append(componentCall.toLowerCase()).append("\">").append(componentCall.replace("Component", "")).append("</a>\n");
+            if (path.equals("\"\"")) path = "#/";
+            else path = "#/" + path.replace("'", "").replace("\"", "");
+            sb.append("\t\t<a href=\"").append(path).append("\" id=\"link-").append(componentCall.toLowerCase()).append("\">").append(componentCall.replace("Component", "")).append("</a>\n");
         }
         sb.append("\t</nav>\n");
 

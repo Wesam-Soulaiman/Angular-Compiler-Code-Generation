@@ -11,7 +11,8 @@ ARROW             : '=>';
 INTERFACE         : 'interface';
 FUNCTION          : 'function' ;
 CLASS             : 'class';
-IMPLEMENTS                 :'implements'; ////////// NEW
+IMPLEMENTS        :'implements'; ////////// NEW
+LOCALSTORAGE: 'localStorage'; ///////////// new
 ROUTES            : 'Routes';
 SELECTOR          : 'selector';
 TEMPLATE_URL      : 'templateUrl';

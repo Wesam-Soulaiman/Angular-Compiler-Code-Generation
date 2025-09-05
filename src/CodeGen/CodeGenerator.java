@@ -10,22 +10,22 @@ public class CodeGenerator {
 
     public void generate(HtmlProgram htmlProg1,HtmlProgram htmlProg2, TsProgram routesProg, CssProgram cssProg, TsProgram tsProg) {
 
-        String htmlOut = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<title>Product App</title>\n\t</head>\n\t<body>\n\t\t<div id=\"app\">\n\t\t</div>\n\t</body>\n</html>";
+        String htmlOut = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"UTF-8\">\n\t\t<title>Product App</title>\n\t</head>\n\t<body>\n\t\t<div class=\"container\" id=\"app\">\n\t\t</div>\n\t</body>\n</html>";
 
-//        String routesOut = transpileTs(routesProg);
-//        String routesHtmlOut = transpileTSToHTML(routesProg);
-//        String Page1 = transpileHTML(htmlProg1);
+        String routesOut = transpileTs(routesProg);
+        String routesHtmlOut = transpileTSToHTML(routesProg);
+        String Page1 = transpileHTML(htmlProg1);
         String Page2 = transpileHTML(htmlProg2);
         String cssOut  = cssProg.toString();
-//        String jsOut   = transpileTs(tsProg);
+        String jsOut   = transpileTs(tsProg);
 
         // inject <script> jsOut </script> into HTML
-//        htmlOut = injectInBody(htmlOut, routesHtmlOut);
-//        htmlOut = injectRoutes(htmlOut, routesOut);
-//        htmlOut = injectScript(htmlOut, jsOut);
+        htmlOut = injectInBody(htmlOut, routesHtmlOut);
+        htmlOut = injectRoutes(htmlOut, routesOut);
+        htmlOut = injectScript(htmlOut, jsOut);
         htmlOut = injectCss(htmlOut, cssOut);
 
-//        htmlOut = injectHtmlPage(htmlOut,"ProductListComponent", Page1);
+        htmlOut = injectHtmlPage(htmlOut,"ProductListComponent", Page1);
         htmlOut = injectHtmlPage(htmlOut,"AddProductComponent", Page2);
 
 
@@ -57,7 +57,7 @@ public class CodeGenerator {
     }
 
     private String injectRoutes(String html, String js) {
-        return html.replace("</body>", "<script>\n" + js + "\n</script>\n</body>");
+        return html.replace("</body>", "<script>\n const app = document.getElementById(\"app\");\n" + js + "\n</script>\n</body>");
     }
 
     private String transpileHTML(HtmlProgram htmlProg) {
