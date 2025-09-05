@@ -2228,6 +2228,7 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
 
         return new ExtractData(memberAccess);
     }
+    //////w
     @Override
     public MemberAccessElement visitLocalLabel(AngularParser.LocalLabelContext ctx) {
         return new LocalLabel();
