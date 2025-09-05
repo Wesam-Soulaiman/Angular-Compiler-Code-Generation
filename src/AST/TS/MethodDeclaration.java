@@ -47,18 +47,32 @@ public class MethodDeclaration {
             this.body = body;
         }
 
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(methodName.toString()).append("(");
-            if (parameters.toString() != null) {
-                sb.append(parameters.toString());
-            }
-            sb.append(")");
-            if (returnType.toString() != null) {
-                sb.append(returnType.toString());
-            }
-            sb.append(" ").append(body.toString());
-            return sb.toString();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(methodName.toString()).append("(");
+        if (parameters != null) {
+            sb.append(parameters.toString());
         }
+        sb.append(")");
+        if (returnType != null) {
+            sb.append(returnType.toString());
+        }
+        sb.append(" ").append(body.toString());
+        return sb.toString();
+    }
+    public String generateJS() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(methodName.generateJS()).append("(");
+        if (parameters != null) {
+            sb.append(parameters.generateJS());
+        }
+        sb.append(")");
+        if (returnType != null) {
+            sb.append(returnType.generateJS());
+        }
+        sb.append(" ").append(body.generateJS());
+        return sb.toString();
+    }
+
 }

@@ -7,7 +7,6 @@ export interface Product {
   description: string;
   image: string;
 }
-JSON.parse(storedProducts)
 @Component({
   selector: 'app-product',
   imports: [CommonModule],

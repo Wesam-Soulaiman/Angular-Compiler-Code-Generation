@@ -12,6 +12,9 @@ public class Parameters {
 
     @Override
     public String toString() {
+        if (parameterList == null || parameterList.isEmpty()) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < parameterList.size(); i++) {
             sb.append(parameterList.get(i).toString());
@@ -21,6 +24,9 @@ public class Parameters {
     }
 
     public String generateJS() {
+        if (parameterList == null || parameterList.isEmpty()) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < parameterList.size(); i++) {
             sb.append(parameterList.get(i).generateJS());

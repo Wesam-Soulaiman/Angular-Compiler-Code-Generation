@@ -19,4 +19,7 @@ public class MethodName {
     public String toString() {
         return idDefiner;
     }
+    public String generateJS() {
+return toString();
+    }
 }

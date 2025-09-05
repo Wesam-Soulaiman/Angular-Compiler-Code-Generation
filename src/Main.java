@@ -25,13 +25,13 @@ import static org.antlr.v4.runtime.CharStreams.fromPath;
 
 public class Main {
 public static void main(String[] args) throws IOException {
-        String routesSource = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\ROUTES-1.txt";
+        String routesSource = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\ROUTES-1.txt";
 
-        String htmlSource1 = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";
-        String htmlSource2 = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-2.txt";
+        String htmlSource1 = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\HTML-1.txt";
+        String htmlSource2 = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\HTML-2.txt";
 
-        String cssSource  = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\CSS-1.txt";
-        String tsxSource  = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\TS-2.txt";
+        String cssSource  = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\CSS-1.txt";
+        String tsxSource  = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\TS-2.txt";
 
         TsProgram routesProg = parseTsx(routesSource);
         HtmlProgram htmlProg1 = parseHtml(htmlSource1);
@@ -45,7 +45,7 @@ public static void main(String[] args) throws IOException {
 
         generator.generate(htmlProg1, htmlProg2,routesProg, cssProg, tsProg);
 
-        String source = "C:\\Users\\LONOVO\\Desktop\\AngularCompiler\\AngularCompiler\\src\\Test\\HTML-1.txt";
+        String source = "C:\\Users\\sarhr\\Desktop\\Project\\Angular-Compiler-Code-Generation\\src\\Test\\HTML-1.txt";
 
         CharStream cs = fromFileName(source);
 

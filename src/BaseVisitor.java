@@ -567,11 +567,14 @@ public class BaseVisitor extends AngularParserBaseVisitor<Object> {
         if (ctx == null) {
             return null;
         }
+
         String functionName = ctx.IDDEFINER().getText();
-        List<Arguments> args = new ArrayList<>();
+        Arguments args = null;
+
         if (ctx.arguments() != null) {
-            args = (List<Arguments>) visit(ctx.arguments());
+            args = (Arguments) visit(ctx.arguments()); // مو List
         }
+
         return new FunctionCall(functionName, args);
     }
 
@@ -2209,6 +2212,7 @@ public Object visitMethodDeclaration(AngularParser.MethodDeclarationContext ctx)
             }
 
             RouterPropertyName name = ctx.routerPropertyName() != null
+
                     ? (RouterPropertyName) visit(ctx.routerPropertyName())
                     : null;
 

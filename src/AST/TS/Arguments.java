@@ -1,39 +1,34 @@
 package AST.TS;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Arguments {
+    private List<Expression> args;
 
-    private List<Expression> expressions;
-
-    public Arguments(List<Expression> expressions) {
-        this.expressions = expressions;
+    public Arguments(List<Expression> args) {
+        this.args = args;
     }
 
-    public List<Expression> getExpressions() {
-        return expressions;
+    public List<Expression> getArgs() {
+        return args;
     }
 
-    public void setExpressions(List<Expression> expressions) {
-        this.expressions = expressions;
+    public void setArgs(List<Expression> args) {
+        this.args = args;
+    }
+
+    public String generateJS() {
+        return args.stream()
+                .map(Expression::generateJS)
+                .collect(Collectors.joining(", "));
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < expressions.size(); i++) {
-            sb.append(expressions.get(i).toString());
-            if (i < expressions.size() - 1) sb.append(", ");
-        }
-        return sb.toString();
+        return args.stream()
+                .map(expr -> expr.toString()) // أو expr.generateJS()
+                .collect(Collectors.joining(", "));
     }
 
-    public String generateJS() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < expressions.size(); i++) {
-            sb.append(expressions.get(i).generateJS());
-            if (i < expressions.size() - 1) sb.append(", ");
-        }
-        return sb.toString();
-    }
 }
